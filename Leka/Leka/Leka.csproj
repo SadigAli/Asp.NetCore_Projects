@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20211023192420_Init.cs" />
+    <Compile Remove="Migrations\20211023192420_Init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="wwwroot\manage\images\logo-mini.svg" />
+    <None Include="wwwroot\manage\images\logo.svg" />
+    <None Include="wwwroot\manage\js\chart.js" />
+    <None Include="wwwroot\manage\js\Chart.roundedBarCharts.js" />
+    <None Include="wwwroot\manage\js\dashboard.js" />
+    <None Include="wwwroot\manage\js\file-upload.js" />
+    <None Include="wwwroot\manage\js\hoverable-collapse.js" />
+    <None Include="wwwroot\manage\js\jquery.cookie.js" />
+    <None Include="wwwroot\manage\js\off-canvas.js" />
+    <None Include="wwwroot\manage\js\select2.js" />
+    <None Include="wwwroot\manage\js\settings.js" />
+    <None Include="wwwroot\manage\js\template.js" />
+    <None Include="wwwroot\manage\js\todolist.js" />
+    <None Include="wwwroot\manage\js\typeahead.js" />
+    <None Include="wwwroot\manage\vendors\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <None Include="wwwroot\manage\vendors\chart.js\Chart.min.js" />
+    <None Include="wwwroot\manage\vendors\feather\fonts\feather-webfont.svg" />
+    <None Include="wwwroot\manage\vendors\js\vendor.bundle.base.js" />
+    <None Include="wwwroot\manage\vendors\progressbar.js\progressbar.min.js" />
+    <None Include="wwwroot\manage\vendors\select2\select2.min.js" />
+    <None Include="wwwroot\manage\vendors\simple-line-icons\fonts\Simple-Line-Iconsb26c.svg" />
+    <None Include="wwwroot\manage\vendors\ti-icons\fonts\themify.svg" />
+    <None Include="wwwroot\manage\vendors\typeahead.js\typeahead.bundle.min.js" />
+    <None Include="wwwroot\manage\vendors\typicons\typicons2471.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.20">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

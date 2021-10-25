@@ -1,0 +1,122 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <form asp-action="create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="HeaderImage">Header Logo</label>
+            <input asp-for="HeaderImage" id="HeaderImage" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+            <span class="text-danger" asp-validation-for="HeaderImage"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FooterImage">Footer Logo</label>
+            <input asp-for="FooterImage" id="FooterImage" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+            <span class="text-danger" asp-validation-for="FooterImage"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AboutTitle">About Title</label>
+            <input asp-for="AboutTitle" id="AboutTitle" class="form-control">
+            <span class="text-danger" asp-validation-for="AboutTitle"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AboutUs">About Us</label>
+            <input asp-for="AboutUs" id="AboutUs" class="form-control">
+            <span class="text-danger" asp-validation-for="AboutUs"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FooterAbout">Footer About</label>
+            <input asp-for="FooterAbout" id="FooterAbout" class="form-control">
+            <span class="text-danger" asp-validation-for="FooterAbout"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" id="Address" class="form-control">
+            <span class="text-danger" asp-validation-for="Address"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactInfo">Contact Info</label>
+            <input asp-for="ContactInfo" id="ContactInfo" class="form-control">
+            <span asp-validation-for="ContactInfo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Copyright">Copyright</label>
+            <input asp-for="Copyright" id="Copyright" class="form-control">
+            <span asp-validation-for="Copyright" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" id="Email" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FacebookLink">Facebook</label>
+            <input asp-for="FacebookLink" id="FacebookLink" class="form-control">
+            <span asp-validation-for="FacebookLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TwitterLink">TwitterLink</label>
+            <input asp-for="TwitterLink" id="TwitterLink" class="form-control">
+            <span asp-validation-for="TwitterLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SkypeLink">Skype</label>
+            <input asp-for="SkypeLink" id="SkypeLink" class="form-control">
+            <span asp-validation-for="SkypeLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PinterestLink">Pinterest Link</label>
+            <input asp-for="PinterestLink" id="PinterestLink" class="form-control">
+            <span asp-validation-for="PinterestLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GoogleLink">Google</label>
+            <input asp-for="GoogleLink" id="GoogleLink" class="form-control">
+            <span asp-validation-for="GoogleLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone">Phone</label>
+            <input asp-for="Phone" id="Phone" class="form-control">
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="WebPage">Web Page</label>
+            <input asp-for="WebPage" id="WebPage" class="form-control">
+            <span asp-validation-for="WebPage" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="WorkGraphic">Work Graphic</label>
+            <input asp-for="WorkGraphic" id="WorkGraphic" class="form-control">
+            <span asp-validation-for="WorkGraphic" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" id="Email" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/manage/js/file-upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>                                                                                                                                                                                                                                                                                                                   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
