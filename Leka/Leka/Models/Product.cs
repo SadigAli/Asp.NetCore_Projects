@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leka.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,12 +22,8 @@ namespace Leka.Models
         [Column(TypeName = "decimal(9,2)")]
         public double DiscountPrice { get; set; }
         public bool StockStatus { get; set; } = true;
-        public enum Gender
-        {
-            Male,
-            Female,
-            Both
-        }
+        
+        public Gender Gender { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public List<OrderItem> OrderItems { get; set; }

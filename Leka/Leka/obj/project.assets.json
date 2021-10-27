@@ -8630,11 +8630,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACER\\Desktop\\Leka\\Leka\\Leka.csproj",
+      "projectUniqueName": "C:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Leka.csproj",
       "projectName": "Leka",
-      "projectPath": "C:\\Users\\ACER\\Desktop\\Leka\\Leka\\Leka.csproj",
+      "projectPath": "C:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Leka.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACER\\Desktop\\Leka\\Leka\\obj\\",
+      "outputPath": "C:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",

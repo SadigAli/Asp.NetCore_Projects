@@ -11,7 +11,7 @@ namespace Leka.Extensions
     {
         public static bool CheckContent(this IFormFile file)
         {
-            if (file.ContentType.Contains("image/*"))
+            if (file.ContentType.Contains("image"))
             {
                 return true;
             }

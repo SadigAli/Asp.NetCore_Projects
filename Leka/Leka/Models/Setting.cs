@@ -53,10 +53,8 @@ namespace Leka.Models
         [Required]
         [StringLength(150)]
         public string Copyright { get; set; }
-        [Required,StringLength(100)]
         [NotMapped]
         public IFormFile HeaderImage { get; set; }
-        [Required, StringLength(100)]
         [NotMapped]
         public IFormFile FooterImage { get; set; }
     }

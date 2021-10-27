@@ -30848,4 +30848,14 @@ div.tagsinput span.tag a {
   }
 }
 
+.image-box{
+    position:relative;
+}
+
+    .image-box .mdi-close {
+        position: absolute;
+        top: 0;
+        color: red;
+    }
+
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

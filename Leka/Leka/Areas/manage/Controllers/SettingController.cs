@@ -1,5 +1,6 @@
 ﻿using Leka.DAL;
 using Leka.Extensions;
+using Leka.Helpers;
 using Leka.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace Leka.Areas.manage.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
 
+
         public SettingController(AppDbContext context,IWebHostEnvironment env)
         {
             _context = context;
@@ -24,7 +26,8 @@ namespace Leka.Areas.manage.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            Setting setting = _context.Settings.FirstOrDefault();
+            return View(setting);
         }
 
         [HttpPost]
@@ -33,7 +36,7 @@ namespace Leka.Areas.manage.Controllers
         {
             if (!ModelState.IsValid) return View("Index",setting);
             Setting settingDb = _context.Settings.FirstOrDefault();
-            string path = Path.Combine(_env.WebRootPath, "upload", "setting");
+            string path = Path.Combine(_env.WebRootPath, "uploads", "setting");
 
             // Added new setting datas
             if (settingDb == null)
@@ -57,33 +60,44 @@ namespace Leka.Areas.manage.Controllers
                     WorkGraphic = setting.WorkGraphic
                 };
                 // Inserted Header Logo
+
+                if (setting.HeaderImage == null)
+                {
+                    ModelState.AddModelError("HeaderImage", "HeaderLogo null ola bilmez");
+                    return View("Index", setting);
+                }
+                if(setting.FooterImage == null)
+                {
+                    ModelState.AddModelError("FooterImage", "HeaderLogo null ola bilmez");
+                    return View("Index", setting);
+                }
                 if (!setting.HeaderImage.CheckContent())
                 {
                     ModelState.AddModelError("HeaderImage", "Fayl shekil formatinda olmalidir");
-                    return View(setting);
+                    return View("Index",setting);
                 }
                 if (setting.HeaderImage.CheckSize(200))
                 {
                     ModelState.AddModelError("HeaderImage", "Faylin olchusu 200kb-dan chox olmamalidi!");
-                    return View(setting);
+                    return View("Index",setting);
                 }
 
                 // Inserted Footer Logo
                 if (!setting.FooterImage.CheckContent())
                 {
                     ModelState.AddModelError("FooterImage", "Fayl shekil formatinda olmalidir");
-                    return View(setting);
+                    return View("Index", setting);
                 }
                 if (setting.FooterImage.CheckSize(200))
                 {
                     ModelState.AddModelError("FooterImage", "Faylin olchusu 200kb-dan chox olmamalidi!");
-                    return View(setting);
+                    return View("Index", setting);
                 }
 
-                setting.HeaderLogo = await newSetting.HeaderImage.SaveImage(path);
+                newSetting.HeaderLogo = await setting.HeaderImage.SaveImage(path);
 
-                
-                setting.FooterLogo = await newSetting.FooterImage.SaveImage(path);
+
+                newSetting.FooterLogo = await setting.FooterImage.SaveImage(path);
 
                 // Added Other Data
 
@@ -97,13 +111,15 @@ namespace Leka.Areas.manage.Controllers
                     if (!setting.HeaderImage.CheckContent())
                     {
                         ModelState.AddModelError("HeaderImage", "Fayl shekil formatinda olmalidir");
-                        return View(setting);
+                        return View("Index", setting);
                     }
                     if (setting.HeaderImage.CheckSize(200))
                     {
                         ModelState.AddModelError("HeaderImage", "Faylin olchusu 200kb-dan chox olmamalidi!");
-                        return View(setting);
+                        return View("Index", setting);
                     }
+
+                    Helper.FileDelete(path,settingDb.HeaderLogo);
                     settingDb.HeaderLogo = await setting.HeaderImage.SaveImage(path);
                 }
 
@@ -112,13 +128,15 @@ namespace Leka.Areas.manage.Controllers
                     if (!setting.FooterImage.CheckContent())
                     {
                         ModelState.AddModelError("FooterImage", "Fayl shekil formatinda olmalidir");
-                        return View(setting);
+                        return View("Index", setting);
                     }
                     if (setting.FooterImage.CheckSize(200))
                     {
                         ModelState.AddModelError("FooterImage", "Faylin olchusu 200kb-dan chox olmamalidi!");
-                        return View(setting);
+                        return View("Index", setting);
                     }
+
+                    Helper.FileDelete(path,settingDb.FooterLogo);
                     settingDb.FooterLogo = await setting.FooterImage.SaveImage(path);
 
                 }
@@ -141,7 +159,7 @@ namespace Leka.Areas.manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Json(setting);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

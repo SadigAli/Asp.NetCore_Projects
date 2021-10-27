@@ -14,6 +14,18 @@
                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                 </span>
             </div>
+
+            <div class="row my-3" id="box">
+                @if (Model != null)
+                {
+                    <div class="col-md-4">
+                        <div class="image-box">
+                            <img src="~/uploads/setting/@Model.HeaderLogo" width="100" alt="Alternate Text" />
+                            <i class="mdi mdi-close"></i>
+                        </div>
+                    </div>
+                }
+            </div>
             <span class="text-danger" asp-validation-for="HeaderImage"></span>
         </div>
         <div class="form-group">
@@ -24,6 +36,17 @@
                 <span class="input-group-append">
                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                 </span>
+            </div>
+            <div class="row my-3" id="box">
+                @if (Model != null)
+                {
+                    <div class="col-md-4">
+                        <div class="image-box">
+                            <img src="~/uploads/setting/@Model.FooterLogo" width="100" alt="Alternate Text" />
+                            <i class="mdi mdi-close"></i>
+                        </div>
+                    </div>
+                }
             </div>
             <span class="text-danger" asp-validation-for="FooterImage"></span>
         </div>
@@ -70,7 +93,7 @@
             <span asp-validation-for="FacebookLink" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="TwitterLink">TwitterLink</label>
+            <label asp-for="TwitterLink">Twitter</label>
             <input asp-for="TwitterLink" id="TwitterLink" class="form-control">
             <span asp-validation-for="TwitterLink" class="text-danger"></span>
         </div>
@@ -80,7 +103,7 @@
             <span asp-validation-for="SkypeLink" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="PinterestLink">Pinterest Link</label>
+            <label asp-for="PinterestLink">Pinterest</label>
             <input asp-for="PinterestLink" id="PinterestLink" class="form-control">
             <span asp-validation-for="PinterestLink" class="text-danger"></span>
         </div>
@@ -103,11 +126,6 @@
             <label asp-for="WorkGraphic">Work Graphic</label>
             <input asp-for="WorkGraphic" id="WorkGraphic" class="form-control">
             <span asp-validation-for="WorkGraphic" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Email">Email</label>
-            <input asp-for="Email" id="Email" class="form-control">
-            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
