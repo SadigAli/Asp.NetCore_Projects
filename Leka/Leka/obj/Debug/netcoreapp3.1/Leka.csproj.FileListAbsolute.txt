@@ -322,3 +322,9 @@ C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Lek
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Leka.dll
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Leka.pdb
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Leka.genruntimeconfig.cache
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Category\Index.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Category\Create.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Category\Edit.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Tag\Create.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Tag\Edit.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Tag\Index.cshtml.g.cs
