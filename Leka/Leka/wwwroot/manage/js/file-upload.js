@@ -11,15 +11,15 @@
   });
 
     let fileInputs = document.querySelectorAll('.file-upload-default');
-    let boxContainer = document.getElementById('box');
 
     for (let fileInput of fileInputs) {
         fileInput.addEventListener('change', function (e) {
+            let boxContainer = this.nextElementSibling.nextElementSibling;
             let files = e.target.files;
+            boxContainer.innerHTML = "";
             for (let file of files) {
                 let reader = new FileReader();
                 reader.addEventListener('loadend', function (e) {
-                    boxContainer.innerHTML = "";
                     let src = e.target.result;
                     let col4 = document.createElement('div');
                     let box = document.createElement('div');

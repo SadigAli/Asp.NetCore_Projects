@@ -1,0 +1,34 @@
+﻿@model Color
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <form  method="post">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" id="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Code">Code</label>
+            <input asp-for="Code" id="Code" class="form-control">
+            <span asp-validation-for="Code" class="text-danger"></span>
+            <div class="color-box" style="width:50px; height:50px; background:white"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $('#Code').on('keyup', function () {
+            $('.color-box').css('background','#'+$(this).val())
+        })
+    </script>
+}

@@ -1,0 +1,105 @@
+﻿@model List<Color> 
+@{
+    ViewData["Title"] = "Index";
+    int counter = 0;
+    string colorCode = "";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Colors</h4>
+                    <p class="card-description">
+                        <a asp-action="create" class="btn btn-success">
+                            <i class="mdi mdi-plus"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Color Name
+                                </th>
+                                <th>
+                                    Color
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Color color in Model)
+                            {
+                                colorCode = $"#{color.Code}";
+                                counter++;
+                                <tr>
+                                    <td class="py-1">
+                                        @counter
+                                    </td>
+                                    <td>
+                                        @color.Name
+                                    </td>
+                                    <td>
+                                        <div style="width:50px; height:50px; border-radius:5px; background-color:@colorCode"></div>
+                                    </td>
+
+                                    <td>
+
+                                        <a asp-action="edit" asp-route-id="@color.Id" class="btn btn-warning mr-2">
+                                            <i class="mdi mdi-pen"></i>
+                                        </a>
+                                        <a asp-action="delete" asp-route-id="@color.Id" class="btn btn-danger delete">
+                                            <i class="mdi mdi-trash-can"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.delete').on('click', function (e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                fetch(url).then(response => response.json()).then(data => {
+                                    if (data.code == 204) {
+                                        swal(data.message, {
+                                            icon: "success",
+                                        });
+                                        window.location.reload();
+                                    } else {
+                                        swal(data.message, {
+                                            icon: "error",
+                                        });
+                                    }
+                                })
+                            } else {
+                                swal("Item wasn't deleted", { icon: "error" });
+                            }
+                        });
+                })
+    </script>
+}

@@ -1,4 +1,5 @@
 ﻿using Leka.Models.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,12 +23,21 @@ namespace Leka.Models
         [Column(TypeName = "decimal(9,2)")]
         public double DiscountPrice { get; set; }
         public bool StockStatus { get; set; } = true;
-        
         public Gender Gender { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public List<OrderItem> OrderItems { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public List<ProductTag> ProductTags { get; set; }
+        [NotMapped]
+        public List<int> ProductColorIds { get; set; }
+        [NotMapped]
+        public List<int> ProductTagIds { get; set; }
+        [NotMapped]
+        public IFormFile PosterImage { get; set; }
+        [NotMapped]
+        public IFormFile HoverImage { get; set; }
+        [NotMapped]
+        public List<IFormFile> Images { get; set; }
     }
 }
