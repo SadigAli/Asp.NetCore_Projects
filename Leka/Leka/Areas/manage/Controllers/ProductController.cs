@@ -26,7 +26,10 @@ namespace Leka.Areas.manage.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> products = _context.Products.Include(x => x.Category).Include(x => x.ProductImages).ToList();
+            List<Product> products = _context.Products.Include(x => x.Category)
+                                        .Include(x=>x.ProductColors).ThenInclude(x => x.ProductImages)
+                                        .Include(x=>x.ProductColors).ThenInclude(x=>x.Color)
+                                        .ToList();
             return View(products);
         }
 
@@ -39,110 +42,141 @@ namespace Leka.Areas.manage.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public IActionResult Create(Product product)
         {
             ViewBag.Colors = _context.Colors.ToList();
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Tags = _context.Tags.ToList();
 
-            string path = Path.Combine(_env.WebRootPath,"uploads","products");
-           if(!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View();
 
-            product.ProductTags = product.ProductTagIds.Select(x => new ProductTag { TagId = x }).ToList();
-
-            foreach (int tagId in product.ProductTagIds)
-            {
-                if(!_context.Tags.Any(x=>x.Id==tagId))
-                    ModelState.AddModelError("ProductTagIds", "Bu tag movcud deyil!");
-
-                ProductTag productTag = new ProductTag
-                {
-                    TagId = tagId
-                };
-                product.ProductTags.Add(productTag);
-            }
-            product.ProductImages = new List<ProductImage>();
-
-            if (product.PosterImage == null)
-            {
-                ModelState.AddModelError("PosterImage", "Poster image is required!");
-            }
-            else
-            {
-                if (product.PosterImage.CheckSize(200))
-                    ModelState.AddModelError("PosterImage", "Faylin uzunlugu 200-den chox ola bilmez!");
-                if (product.PosterImage.CheckContent())
-                    ModelState.AddModelError("PosterImage", "Faylin image type-inda olmalidir!");
-                ProductImage productImage = new ProductImage {
-                    Image = await product.PosterImage.SaveImage(path),
-                    PosterStatus = true
-                 };
-                product.ProductImages.Add(productImage);
-
-            }
-
-            if (product.HoverImage == null)
-            {
-                ModelState.AddModelError("PosterImage", "Poster image is required!");
-            }
-            else
-            {
-                if (product.HoverImage.CheckSize(200))
-                    ModelState.AddModelError("HoverImage", "Faylin uzunlugu 200-den chox ola bilmez!");
-                if (product.HoverImage.CheckContent())
-                    ModelState.AddModelError("HoverImage", "Faylin image type-inda olmalidir!");
-
-                ProductImage productImage = new ProductImage
-                {
-                    Image = await product.HoverImage.SaveImage(path),
-                    PosterStatus = false
-                };
-                product.ProductImages.Add(productImage);
-
-            }
-
-            if (product.Images != null)
-            {
-                foreach (IFormFile image in product.Images)
-                {
-                    if (image.CheckSize(200))
-                    {
-                        continue;
-                    }
-                    if (image.CheckContent())
-                    {
-                        continue;
-                    }
-
-                    ProductImage productImage = new ProductImage
-                    {
-                        Image = await image.SaveImage(path),
-                        PosterStatus = null
-                    };
-
-                    product.ProductImages.Add(productImage);
-                }
-            }
-
-
-
-
+            product.ProductTags = new List<ProductTag>();
+            product.ProductColors = new List<ProductColor>();
 
             foreach (int colorId in product.ProductColorIds)
             {
-                if (!_context.Colors.Any(x => x.Id == colorId))
-                    ModelState.AddModelError("ProductTagIds", "Bu tag movcud deyil!");
-
-                ProductColor productTag = new ProductColor
+                product.ProductColors.Add(new ProductColor
                 {
-                    ColorId = colorId,
-                    ProductImageId = product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true).Id
-                };
+                    ColorId = colorId
+                });
             }
 
+            foreach (int tagId in product.ProductTagIds)
+            {
+                product.ProductTags.Add(new ProductTag
+                {
+                    TagId = tagId
+                });
+            }
             _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
 
+        public IActionResult AddImage(int? productId, int? colorId)
+        {
+            if (productId == null || colorId == null) return NotFound();
+            ProductColor productColor = _context.ProductColors
+                                        .Include(x=>x.ProductImages)
+                                        .Include(x=>x.Product)
+                                        .Include(x=>x.Color)
+                                        .FirstOrDefault(x=>x.ColorId==colorId && x.ProductId==productId);
+            if (productColor == null) return NotFound();
+
+            return View(productColor);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddImage(int? productId, int? colorId,ProductColor productColor)
+        {
+            if (productId == null || colorId == null) return NotFound();
+            ProductColor productColorDb = _context.ProductColors
+                                        .Include(x => x.ProductImages)
+                                        .Include(x => x.Product)
+                                        .Include(x => x.Color)
+                                        .FirstOrDefault(x => x.ColorId == colorId && x.ProductId == productId);
+            if (productColorDb == null) return NotFound();
+
+            string path = Path.Combine(_env.WebRootPath, "uploads", "products");
+            productColorDb.ProductImages = new List<ProductImage>();
+
+            #region PosterImageAdded
+            if (productColor.PosterImage == null)
+            {
+                ModelState.AddModelError("PosterImage", "Poster sheklini daxil edin!");
+                return View(productColorDb);
+            }
+
+            if (!productColor.PosterImage.CheckContent())
+            {
+                ModelState.AddModelError("PosterImage", "Duzgun formatda shekil daxil edin!");
+                return View(productColorDb);
+            }
+
+            if (productColor.PosterImage.CheckSize(200))
+            {
+                ModelState.AddModelError("PosterImage", "Sheklin uzunlugu verilen olchuden chox olmamalidi");
+                return View(productColorDb);
+            }
+
+            productColorDb.ProductImages.Add(new ProductImage
+            {
+                Image = await productColor.PosterImage.SaveImage(path),
+                PosterStatus = true
+            });
+            #endregion
+
+            #region HoverImageAdded
+            if (productColor.HoverImage == null)
+            {
+                ModelState.AddModelError("HoverImage", "Poster sheklini daxil edin!");
+                return View(productColorDb);
+            }
+
+            if (!productColor.HoverImage.CheckContent())
+            {
+                ModelState.AddModelError("HoverImage", "Duzgun formatda shekil daxil edin!");
+                return View(productColorDb);
+            }
+
+            if (productColor.HoverImage.CheckSize(200))
+            {
+                ModelState.AddModelError("HoverImage", "Sheklin uzunlugu verilen olchuden chox olmamalidi");
+                return View(productColorDb);
+            }
+
+            productColorDb.ProductImages.Add(new ProductImage
+            {
+                Image = await productColor.HoverImage.SaveImage(path),
+                PosterStatus = false
+            });
+            #endregion
+
+            #region SimpleImagesAdded
+            foreach (IFormFile file in productColor.Images)
+            {
+                if (!file.CheckContent())
+                {
+                    ModelState.AddModelError("Images", "Duzgun formatda shekil daxil edin!");
+                    return View(productColorDb);
+                }
+
+                if (file.CheckSize(200))
+                {
+                    ModelState.AddModelError("Images", "Sheklin uzunlugu verilen olchuden chox olmamalidi");
+                    return View(productColorDb);
+                }
+                productColorDb.ProductImages.Add(new ProductImage
+                {
+                    Image = await file.SaveImage(path),
+                    PosterStatus = null
+                });
+
+            }
+            #endregion
+
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

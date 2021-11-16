@@ -11,6 +11,7 @@
   });
 
     let fileInputs = document.querySelectorAll('.file-upload-default');
+    let removes = document.querySelectorAll('.image-box .mdi-close');
 
     for (let fileInput of fileInputs) {
         fileInput.addEventListener('change', function (e) {
@@ -37,12 +38,14 @@
                     box.append(remove);
                     boxContainer.append(col4);
 
-                    let removes = document.querySelectorAll('.image-box .mdi-close')
+                    let removes = document.querySelectorAll('.image-box .mdi-close');
+
                     removes.forEach((remove,index) => {
                         remove.addEventListener('click', function () {
                             remove.parentElement.parentElement.remove();
                         });
                     })
+
                 })
 
                 reader.readAsDataURL(file);
@@ -50,5 +53,10 @@
         })
     }
 
+        removes.forEach((remove, index) => {
+            remove.addEventListener('click', function () {
+                remove.parentElement.parentElement.remove();
+            });
+        })
     
 })(jQuery);

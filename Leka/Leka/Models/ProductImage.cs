@@ -12,9 +12,9 @@ namespace Leka.Models
         [Required, StringLength(100)]
         public string Image { get; set; }
         public bool? PosterStatus { get; set; }
-        public Product Product { get; set; }
-        public int ProductId { get; set; }
-        public List<ProductColor> ProductColors { get; set; }
+        public ProductColor ProductColor { get; set; }
+        public int ProductColorId { get; set; }
+
 
     }
 }

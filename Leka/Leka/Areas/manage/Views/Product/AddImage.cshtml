@@ -1,0 +1,78 @@
+﻿@model ProductColor
+@{
+    ViewData["Title"] = "AddImage";
+}
+
+<div class="row">
+    <h3>@Model.Product.Name</h3>
+    <div style="background-color:@("#"+Model.Color.Code); width:200px; height:5px"></div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="PosterImage">Poster Image</label>
+            <input asp-for="PosterImage" id="PosterImage" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+
+            <div class="row my-3" id="box">
+            </div>
+            <span class="text-danger" asp-validation-for="PosterImage"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HoverImage">Hover Image</label>
+            <input asp-for="HoverImage" id="HoverImage" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+
+            <div class="row my-3" id="box">
+            </div>
+            <span class="text-danger" asp-validation-for="HoverImage"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Images">Images</label>
+            <input asp-for="Images" id="Images" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+
+            <div class="row my-3" id="box">
+                @if (Model != null)
+                {
+                    foreach (ProductImage productImage in Model.ProductImages.Where(x => x.PosterStatus == null))
+                    {
+                        <div class="col-md-4">
+                            <div class="image-box">
+                                <img src="~/uploads/products/@productImage.Image" width="100" alt="Alternate Text" />
+                                <i class="mdi mdi-close"></i>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+            <span class="text-danger" asp-validation-for="Images"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script src="~/manage/js/file-upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/manage/vendors/select2/select2.min.js"></script>
+    <script src="~/manage/js/select2.js"></script>
+}

@@ -27,17 +27,12 @@ namespace Leka.Models
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public List<OrderItem> OrderItems { get; set; }
-        public List<ProductImage> ProductImages { get; set; }
+        public List<ProductColor> ProductColors { get; set; }
         public List<ProductTag> ProductTags { get; set; }
         [NotMapped]
         public List<int> ProductColorIds { get; set; }
         [NotMapped]
         public List<int> ProductTagIds { get; set; }
-        [NotMapped]
-        public IFormFile PosterImage { get; set; }
-        [NotMapped]
-        public IFormFile HoverImage { get; set; }
-        [NotMapped]
-        public List<IFormFile> Images { get; set; }
+
     }
 }

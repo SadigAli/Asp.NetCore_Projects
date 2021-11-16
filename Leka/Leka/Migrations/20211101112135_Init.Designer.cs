@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leka.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211023194051_Init")]
+    [Migration("20211101112135_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace Leka.Migrations
                     b.Property<decimal>("DiscountPrice")
                         .HasColumnType("decimal(9,2)");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -199,14 +202,14 @@ namespace Leka.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductImageId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ColorId");
 
-                    b.HasIndex("ProductImageId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductColors");
                 });
@@ -226,12 +229,12 @@ namespace Leka.Migrations
                     b.Property<bool?>("PosterStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductColorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductColorId");
 
                     b.ToTable("ProductImages");
                 });
@@ -675,18 +678,18 @@ namespace Leka.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Leka.Models.ProductImage", "ProductImage")
+                    b.HasOne("Leka.Models.Product", "Product")
                         .WithMany("ProductColors")
-                        .HasForeignKey("ProductImageId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Leka.Models.ProductImage", b =>
                 {
-                    b.HasOne("Leka.Models.Product", "Product")
+                    b.HasOne("Leka.Models.ProductColor", "ProductColor")
                         .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("ProductColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

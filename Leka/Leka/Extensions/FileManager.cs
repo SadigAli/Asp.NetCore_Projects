@@ -20,7 +20,7 @@ namespace Leka.Extensions
 
         public static bool CheckSize(this IFormFile file,int size)
         {
-            if(file.Length / 1024 > 200)
+            if(file.Length / 1024 > size)
             {
                 return true;
             }

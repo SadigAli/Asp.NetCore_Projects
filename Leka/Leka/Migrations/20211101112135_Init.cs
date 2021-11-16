@@ -265,6 +265,7 @@ namespace Leka.Migrations
                     SalePrice = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     DiscountPrice = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     StockStatus = table.Column<bool>(nullable: false),
+                    Gender = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -323,20 +324,25 @@ namespace Leka.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductImages",
+                name: "ProductColors",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Image = table.Column<string>(maxLength: 100, nullable: false),
-                    PosterStatus = table.Column<bool>(nullable: true),
+                    ColorId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductImages", x => x.Id);
+                    table.PrimaryKey("PK_ProductColors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductImages_Products_ProductId",
+                        name: "FK_ProductColors_Colors_ColorId",
+                        column: x => x.ColorId,
+                        principalTable: "Colors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductColors_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -400,27 +406,22 @@ namespace Leka.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductColors",
+                name: "ProductImages",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ColorId = table.Column<int>(nullable: false),
-                    ProductImageId = table.Column<int>(nullable: false)
+                    Image = table.Column<string>(maxLength: 100, nullable: false),
+                    PosterStatus = table.Column<bool>(nullable: true),
+                    ProductColorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductColors", x => x.Id);
+                    table.PrimaryKey("PK_ProductImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductColors_Colors_ColorId",
-                        column: x => x.ColorId,
-                        principalTable: "Colors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductColors_ProductImages_ProductImageId",
-                        column: x => x.ProductImageId,
-                        principalTable: "ProductImages",
+                        name: "FK_ProductImages_ProductColors_ProductColorId",
+                        column: x => x.ProductColorId,
+                        principalTable: "ProductColors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -485,14 +486,14 @@ namespace Leka.Migrations
                 column: "ColorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductColors_ProductImageId",
+                name: "IX_ProductColors_ProductId",
                 table: "ProductColors",
-                column: "ProductImageId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductImages_ProductId",
+                name: "IX_ProductImages_ProductColorId",
                 table: "ProductImages",
-                column: "ProductId");
+                column: "ProductColorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -539,7 +540,7 @@ namespace Leka.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "ProductColors");
+                name: "ProductImages");
 
             migrationBuilder.DropTable(
                 name: "ProductTags");
@@ -560,16 +561,16 @@ namespace Leka.Migrations
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "Colors");
-
-            migrationBuilder.DropTable(
-                name: "ProductImages");
+                name: "ProductColors");
 
             migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "SosialIcons");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
 
             migrationBuilder.DropTable(
                 name: "Products");
