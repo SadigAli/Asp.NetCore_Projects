@@ -1,0 +1,17 @@
+﻿@model List<ProductBasketVM>
+
+@foreach (ProductBasketVM productBasket in Model)
+{
+    <li>
+
+        <div class="product-thumb">
+            <a href="~/#"><img src="~/uploads/products/@productBasket.Image" alt="" /></a>
+        </div>
+        <div class="product-info">
+            <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
+            <span class="price">$@(productBasket.SalePrice * productBasket.Count)</span>
+            <span class="qty">Category: @productBasket.CategoryName</span>
+            <a href="~/#" class="remove">remove</a>
+        </div>
+    </li>
+}

@@ -1,32 +1,36 @@
-﻿<!DOCTYPE html>
+﻿@inject LayoutService service;
+@{
+    double totalAmount = 0;
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from kute-themes.com/html/leka/html/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Oct 2021 06:18:13 GMT -->
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta charset="UTF-8">
-	<title>Leka - Option 3</title>
-	<link rel="stylesheet" href="~/css/bootstrap.min.css">
-	<link rel="stylesheet" href="~/css/font-awesome.min.css">
-	<link rel="stylesheet" href="~/css/owl.carousel.css">
+    <meta charset="UTF-8">
+    <title>Leka - Option 3</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
     <link rel="stylesheet" href="~/css/chosen.css">
     <link rel="stylesheet" href="~/css/superslides.css">
     <link rel="stylesheet" href="~/css/magnific-popup.css">
     <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="~/css/animate.css">
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,500' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body class="home">
-	<header class="header header-style3">
-		<div class="top-header">
+    <header class="header header-style3">
+        <div class="top-header">
             <div class="container">
                 <div class="top-header-menu">
-                    <a href="~/#"><i class="fa fa-phone"></i> +84 868.8568</a> 
+                    <a href="~/#"><i class="fa fa-phone"></i> +84 868.8568</a>
                     <a href="~/#"><i class="fa fa-clock-o"></i> MON - SAT: 08 am - 17 pm</a>
-                    <a href="~/#"><i class="fa fa-envelope-o"></i> Support@wpelite.com</a> 
+                    <a href="~/#"><i class="fa fa-envelope-o"></i> Support@wpelite.com</a>
                 </div>
                 <div class="top-header-right">
                     <ul>
@@ -49,7 +53,7 @@
                             </ul>
                         </li>
                         <li class="dropdown language">
-                            <a data-toggle="dropdown" href="~/#"><img src="~/images/en.jpg" alt=""/>ENGLISH</a>
+                            <a data-toggle="dropdown" href="~/#"><img src="~/images/en.jpg" alt="" />ENGLISH</a>
                             <ul class="dropdown-menu">
                                 <li><a class="current" href="~/#">ENGLISH</a></li>
                                 <li><a href="~/#">French<img src="~/images/fr.jpg" alt="" /></a></li>
@@ -69,7 +73,7 @@
                     </form>
                 </div>
                 <div class="row">
-                    <div  class="col-sm-12 col-md-12 col-lg-3">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
                         <div class="logo">
                             <a href="~/index.html"><img src="~/images/logo2.png" alt="" /></a>
                         </div>
@@ -78,11 +82,11 @@
                         <a href="~/#" class="mobile-navigation"><i class="fa fa-bars"></i></a>
                         <nav id="main-menu" class="main-menu">
                             <ul class="navigation">
-                                <li class="menu-item-has-children"><a href="~/index.html">Home</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">About</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Products</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Blogs</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Contact</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="Home">Home</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="about">About</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="product">Products</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="blog">Blogs</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="contact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -94,37 +98,27 @@
                         <!-- ./Icon search -->
                         <!-- Mini cart -->
                         <div class="mini-cart">
-                            <a class="icon" href="~/#">Cart <span class="count">2</span></a>
+                            <a class="icon" href="~/#">Cart <span class="count">@service.GetBasketItems().Count()</span></a>
                             <div class="mini-cart-content">
                                 <ul class="list-cart-product">
-                                    <li>
-                                        
-                                        <div class="product-thumb">
-                                            <a href="~/#"><img src="~/images/products/product-cart1.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h5 class="product-name"><a href="~/#">Ledtead Predae</a></h5>
-                                            <span class="price">$90.00</span>
-                                            <span class="qty">Qty: 1 - Size: L</span>
-                                            <a href="~/#" class="remove">remove</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        
-                                        <div class="product-thumb">
-                                            <a href="~/#"><img src="~/images/products/product-cart2.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h5 class="product-name"><a href="~/#">Ledtead Predae</a></h5>
-                                            <span class="price">$90.00</span>
-                                            <span class="qty">Qty: 1 - Size: M</span>
-                                            <a href="~/#" class="remove">remove</a>
-                                        </div>
-                                    </li>
+                                    @foreach (ProductBasketVM productBasket in service.GetBasketItems())
+                                    {
+                                        totalAmount += (double)productBasket.SalePrice * productBasket.Count;
+                        <li>
+                            <div class="product-thumb">
+                                <a href="~/#"><img src="~/uploads/products/@productBasket.Image" alt="" /></a>
+                            </div>
+                            <div class="product-info">
+                                <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
+                                <span class="price">$@productBasket.SalePrice X @productBasket.Count</span>
+                                <span class="qty">Category: @productBasket.CategoryName</span>
+                                <a asp-controller="product" asp-action="RemoveBasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
+                            </div>
+                        </li>}
                                 </ul>
                                 <p class="sub-toal-wapper">
                                     <span>SUBTOTAL</span>
-                                    <span class="sub-toal">$180.00</span>
+                                    <span class="sub-toal">$@totalAmount</span>
                                 </p>
                                 <a href="~/#" class="btn-view-cart">VIEW SHOPPING CART</a>
                                 <a href="~/#" class="btn-check-out">PROCESS TO CHECK OUT</a>
@@ -135,102 +129,102 @@
                 </div>
             </div>
         </div>
-	</header>
-	@RenderBody()
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<a href="~/#"><img src="~/images/logo-footer.png" alt=""></a>
-				</div>
-				<div class="col-sm-4">
-					<div class="widget">
-						Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 
-					</div>
-					<div class="widget widget-social">
-						<div class="list-social">
-							<a href="~/#"><i class="fa fa-facebook"></i></a>
-							<a href="~/#"><i class="fa fa-twitter"></i></a>
-							<a href="~/#"><i class="fa fa-google-plus"></i></a>
-							<a href="~/#"><i class="fa fa-skype"></i></a>
-							<a href="~/#"><i class="fa fa-pinterest-p"></i></a>
-						</div>
-					</div>
-					<div class="widget widget-newaletter">
-                    <form>
-                        <input type="text" class="newaletter-email" placeholder="EMAIL FOR NEWSLETTER">
-                        <span><button type="submit" class="newaletter-button"><i class="fa fa-envelope-o"></i></button></span>
-                    </form>
-					</div>
-				</div>
-				<div class="col-sm-4 col-md-2">
-					<div class="widget widget_nav_menu">
-						<h3 class="widget-title">COMPANY</h3>
-						<ul>
-							<li><a href="~/#">ABOUT US</a></li>
-							<li><a href="~/#">OFFICES</a></li>
-							<li><a href="~/#">STORES</a></li>
-							<li><a href="~/#">WORK WITH US</a></li>
-							<li><a href="~/#">CONTACT</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4 col-md-2">
-					<div class="widget widget_nav_menu">
-						<h3 class="widget-title">SHOPPING GUIDE</h3>
-						<ul>
-							<li><a href="~/#">HOW TO BUY</a></li>
-							<li><a href="~/#">INFOMATION</a></li>
-							<li><a href="~/#">PAYMENT</a></li>
-							<li><a href="~/#">SHIPPING</a></li>
-							<li><a href="~/#">EXCHANGES</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4 col-md-2">
-					<div class="widget widget_nav_menu">
-						<h3 class="widget-title">COMPANY</h3>
-						<ul>
-							<li><a href="~/#">ABOUT US</a></li>
-							<li><a href="~/#">OFFICES</a></li>
-							<li><a href="~/#">STORES</a></li>
-							<li><a href="~/#">WORK WITH US</a></li>
-							<li><a href="~/#">CONTACT</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4 col-md-2">
-					<div class="widget widget_nav_menu">
-						<h3 class="widget-title">SHOPPING GUIDE</h3>
-						<ul>
-							<li><a href="~/#">HOW TO BUY</a></li>
-							<li><a href="~/#">INFOMATION</a></li>
-							<li><a href="~/#">PAYMENT</a></li>
-							<li><a href="~/#">SHIPPING</a></li>
-							<li><a href="~/#">EXCHANGES</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="coppyright">
+    </header>
+    @RenderBody()
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="~/#"><img src="~/images/logo-footer.png" alt=""></a>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget">
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over
+                    </div>
+                    <div class="widget widget-social">
+                        <div class="list-social">
+                            <a href="~/#"><i class="fa fa-facebook"></i></a>
+                            <a href="~/#"><i class="fa fa-twitter"></i></a>
+                            <a href="~/#"><i class="fa fa-google-plus"></i></a>
+                            <a href="~/#"><i class="fa fa-skype"></i></a>
+                            <a href="~/#"><i class="fa fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget widget-newaletter">
+                        <form>
+                            <input type="text" class="newaletter-email" placeholder="EMAIL FOR NEWSLETTER">
+                            <span><button type="submit" class="newaletter-button"><i class="fa fa-envelope-o"></i></button></span>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="widget widget_nav_menu">
+                        <h3 class="widget-title">COMPANY</h3>
+                        <ul>
+                            <li><a href="~/#">ABOUT US</a></li>
+                            <li><a href="~/#">OFFICES</a></li>
+                            <li><a href="~/#">STORES</a></li>
+                            <li><a href="~/#">WORK WITH US</a></li>
+                            <li><a href="~/#">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="widget widget_nav_menu">
+                        <h3 class="widget-title">SHOPPING GUIDE</h3>
+                        <ul>
+                            <li><a href="~/#">HOW TO BUY</a></li>
+                            <li><a href="~/#">INFOMATION</a></li>
+                            <li><a href="~/#">PAYMENT</a></li>
+                            <li><a href="~/#">SHIPPING</a></li>
+                            <li><a href="~/#">EXCHANGES</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="widget widget_nav_menu">
+                        <h3 class="widget-title">COMPANY</h3>
+                        <ul>
+                            <li><a href="~/#">ABOUT US</a></li>
+                            <li><a href="~/#">OFFICES</a></li>
+                            <li><a href="~/#">STORES</a></li>
+                            <li><a href="~/#">WORK WITH US</a></li>
+                            <li><a href="~/#">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="widget widget_nav_menu">
+                        <h3 class="widget-title">SHOPPING GUIDE</h3>
+                        <ul>
+                            <li><a href="~/#">HOW TO BUY</a></li>
+                            <li><a href="~/#">INFOMATION</a></li>
+                            <li><a href="~/#">PAYMENT</a></li>
+                            <li><a href="~/#">SHIPPING</a></li>
+                            <li><a href="~/#">EXCHANGES</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="coppyright">
                     <p>© LEKA E-COMMERCE TEMPLATE. Powered By Kutethemes</p>
-				</div>
-				<div class="payment_methods">
-					<img src="~/images/payment_methods.png" alt="">
-				</div>
-			</div>
-		</div>
-	</footer>
+                </div>
+                <div class="payment_methods">
+                    <img src="~/images/payment_methods.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
     <a href="#" class="scroll_top" title="Scroll to Top">Scroll</a>
-	<script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="~/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="~/js/jquery.fitvids.js"></script>
-	<script type="text/javascript" src="~/js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="~/js/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="~/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.parallax-1.1.3.js"></script>
     <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
-	<script type="text/javascript" src="~/js/isotope.pkgd.js"></script>
-	<script type="text/javascript" src="~/js/packery-mode.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/js/isotope.pkgd.js"></script>
+    <script type="text/javascript" src="~/js/packery-mode.pkgd.min.js"></script>
     <script type="text/javascript" src="~/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/js/jquery.superslides.min.js"></script>
     <script type="text/javascript" src="~/js/jquery.magnific-popup.min.js"></script>
@@ -238,7 +232,7 @@
     <script type="text/javascript" src="~/js/Modernizr.js"></script>
     <script type="text/javascript" src="~/js/jquery.actual.min.js"></script>
     <script type="text/javascript" src="~/js/blog-masonry.js"></script>
-	<script type="text/javascript" src="~/js/custom.js"></script>
+    <script type="text/javascript" src="~/js/custom.js"></script>
 </body>
 
 <!-- Mirrored from kute-themes.com/html/leka/html/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Oct 2021 06:21:14 GMT -->

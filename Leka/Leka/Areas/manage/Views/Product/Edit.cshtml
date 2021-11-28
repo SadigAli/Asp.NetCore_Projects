@@ -1,0 +1,76 @@
+﻿@model Product 
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" id="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" id="Description" class="form-control">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CostPrice">Cost Price</label>
+            <input asp-for="CostPrice" id="CostPrice" class="form-control">
+            <span asp-validation-for="CostPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SalePrice">Sale Price</label>
+            <input asp-for="SalePrice" id="SalePrice" class="form-control">
+            <span asp-validation-for="SalePrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DiscountPrice">Discount Price</label>
+            <input asp-for="DiscountPrice" id="DiscountPrice" class="form-control">
+            <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CategoryId">Category</label>
+            <select class="js-example-basic-single w-100 select2-hidden-accessible" data-select2-id="1" asp-for="CategoryId" tabindex="-1" aria-hidden="true">
+                @foreach (Category category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductTagIds">Tags</label>
+            <select class="js-example-basic-single w-100 select2-hidden-accessible" data-select2-id="1" asp-for="ProductTagIds" tabindex="-1" aria-hidden="true">
+                @foreach (Tag tag in ViewBag.Tags)
+                {
+                    <option value="@tag.Id">@tag.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductColorIds">Colors</label>
+            <select class="js-example-basic-multiple w-100 select2-hidden-accessible" multiple="" asp-for="ProductColorIds" data-select2-id="4" tabindex="-1" aria-hidden="true">
+                @foreach (Color color in ViewBag.Colors)
+                {
+                    <option value="@color.Id">@color.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script src="~/manage/js/file-upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/manage/vendors/select2/select2.min.js"></script>
+    <script src="~/manage/js/select2.js"></script>
+}

@@ -18,14 +18,13 @@ namespace Leka.Models
         public List<ProductImage> ProductImages { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
         public IFormFile PosterImage { get; set; }
         [NotMapped]
-        [JsonIgnore]
         public IFormFile HoverImage { get; set; }
         [NotMapped]
-        [JsonIgnore]
         public List<IFormFile> Images { get; set; }
+        [NotMapped]
+        public List<int> ImageIds { get; set; }
 
     }
 }

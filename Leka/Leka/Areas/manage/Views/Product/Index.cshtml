@@ -137,8 +137,8 @@
                             <tr class="view">
                                 <td>@counter</td>
                                 <td>@product.Name</td>
-                                <td class="pcs">@(product.SalePrice-product.DiscountPrice)</td>
-                                <td class="cur">@product.Category.Name</td>
+                                <td class="cur">@(product.SalePrice-product.DiscountPrice)</td>
+                                <td>@product.Category.Name</td>
                                 <td>@(product.StockStatus?"In Stock":"Out of Stock")</td>
                                 <td>
                                     <a asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning mr-2">
@@ -172,11 +172,12 @@
                                                         <tr style="background-color:@("#"+productColor.Color.Code)">
                                                             <td>@productColorCounter</td>
                                                             <td>
-                                                                @if (productColor.ProductImages.Count()>0) 
+                                                                @if (productColor.ProductImages.Count() > 0)
                                                                 {
-                                                                    <img width="150" src="~/uploads/products/@productColor.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" />
+                                                                    <img width="50" src="~/uploads/products/@productColor.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" />
                                                                 }
-                                                                else {
+                                                                else
+                                                                {
                                                                     <a class="btn btn-success" asp-action="addimage" asp-route-productId="@product.Id" asp-route-colorId="@productColor.Color.Id">
                                                                         <i class="mdi mdi-plus"></i>
                                                                     </a>
@@ -184,10 +185,10 @@
                                                             </td>
                                                             <td>@productColor.Color.Name</td>
                                                             <td>
-                                                                <a asp-action="editimage" asp-route-productId="@product.Id" asp-route-colorId="@productColor.Color.Id"  class="btn btn-warning mr-2">
+                                                                <a asp-action="addimage" asp-route-productId="@product.Id" asp-route-colorId="@productColor.Color.Id" class="btn btn-warning mr-2">
                                                                     <i class="mdi mdi-pen"></i>
                                                                 </a>
-                                                                <a asp-action="deleteimage" asp-route-productId="@product.Id" asp-route-colorId="@productColor.Color.Id" class="btn btn-danger delete">
+                                                                <a asp-action="deletecolor" asp-route-productId="@product.Id" asp-route-colorId="@productColor.Color.Id" class="btn btn-danger delete">
                                                                     <i class="mdi mdi-trash-can"></i>
                                                                 </a>
                                                             </td>
@@ -215,5 +216,37 @@
                 $(this).toggleClass("open").next(".fold").toggleClass("open");
             });
         });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.delete').on('click', function (e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        fetch(url).then(response => response.json()).then(data => {
+                            if (data.code == 204) {
+                                swal(data.message, {
+                                    icon: "success",
+                                });
+                                window.location.reload();
+                            } else {
+                                swal(data.message, {
+                                    icon: "error",
+                                });
+                            }
+                        })
+                    } else {
+                        swal("Item wasn't deleted", { icon: "error" });
+                    }
+                });
+        })
     </script>
 }

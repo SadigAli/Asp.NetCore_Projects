@@ -1,5 +1,6 @@
 using Leka.DAL;
 using Leka.Models;
+using Leka.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,10 @@ namespace Leka
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<LayoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

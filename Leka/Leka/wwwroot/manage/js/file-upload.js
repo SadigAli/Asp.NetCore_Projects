@@ -17,7 +17,9 @@
         fileInput.addEventListener('change', function (e) {
             let boxContainer = this.nextElementSibling.nextElementSibling;
             let files = e.target.files;
-            boxContainer.innerHTML = "";
+            if (fileInput.getAttribute('multiple') == null) {
+                boxContainer.innerHTML = "";
+            }
             for (let file of files) {
                 let reader = new FileReader();
                 reader.addEventListener('loadend', function (e) {

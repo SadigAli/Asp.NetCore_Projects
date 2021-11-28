@@ -18,6 +18,15 @@
             </div>
 
             <div class="row my-3" id="box">
+                @if (Model.ProductImages.Count() > 0)
+                {
+                    <div class="col-md-4">
+                        <div class="image-box">
+                            <img src="~/uploads/products/@Model.ProductImages.FirstOrDefault(x=>x.PosterStatus==true).Image" width="100" alt="Alternate Text" />
+                            <i class="mdi mdi-close"></i>
+                        </div>
+                    </div>
+                }
             </div>
             <span class="text-danger" asp-validation-for="PosterImage"></span>
         </div>
@@ -32,6 +41,15 @@
             </div>
 
             <div class="row my-3" id="box">
+                @if (Model.ProductImages.Count() > 0)
+                {
+                    <div class="col-md-4">
+                        <div class="image-box">
+                            <img src="~/uploads/products/@Model.ProductImages.FirstOrDefault(x=>x.PosterStatus==false)?.Image" width="100" alt="Alternate Text" />
+                            <i class="mdi mdi-close"></i>
+                        </div>
+                    </div>
+                }
             </div>
             <span class="text-danger" asp-validation-for="HoverImage"></span>
         </div>
@@ -47,19 +65,17 @@
             </div>
 
             <div class="row my-3" id="box">
-                @if (Model != null)
-                {
-                    foreach (ProductImage productImage in Model.ProductImages.Where(x => x.PosterStatus == null))
+                    @foreach (ProductImage productImage in Model.ProductImages.Where(x => x.PosterStatus == null))
                     {
                         <div class="col-md-4">
                             <div class="image-box">
-                                <img src="~/uploads/products/@productImage.Image" width="100" alt="Alternate Text" />
+                                <input type="hidden" name="ImageIds[]" value="@productImage.Id"/>
+                                <img src="~/uploads/products/@productImage.Image" width="150" alt="Alternate Text" />
                                 <i class="mdi mdi-close"></i>
                             </div>
                         </div>
                     }
 
-                }
             </div>
             <span class="text-danger" asp-validation-for="Images"></span>
         </div>

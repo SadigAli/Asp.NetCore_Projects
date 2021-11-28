@@ -19,8 +19,22 @@ using Leka.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\Views\_ViewImports.cshtml"
+using Leka.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\Views\_ViewImports.cshtml"
+using Leka.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fa195aeddf21558c767e7fc29a1e40c73dd6de35", @"/Views/Home/About.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"115d6b73c746c7dc4058b9fb93a2f4965abf8196", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"750ce9ca7ffc03ab0a1da82ea9b60eb103a2f158", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_About : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/#"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +85,7 @@ using Leka.Models;
             <h2 class=""page-title"">ABOUT US</h2>
             <div class=""breadcrumbs"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de355582", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de355946", async() => {
                 WriteLiteral("Home");
             }
             );
@@ -105,7 +119,7 @@ using Leka.Models;
             <div class=""row"">
                 <div class=""col-sm-6"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de358082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de358446", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -180,7 +194,7 @@ using Leka.Models;
                 <div class=""team-item"">
                     <div class=""team-avatar"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3513333", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3513697", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -195,7 +209,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        <div class=\"social-network\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3514533", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3514897", async() => {
                 WriteLiteral("<i class=\"fa fa-facebook\"></i>");
             }
             );
@@ -210,7 +224,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3515663", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3516027", async() => {
                 WriteLiteral("<i class=\"fa fa-twitter\"></i>");
             }
             );
@@ -225,7 +239,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3516792", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3517156", async() => {
                 WriteLiteral("<i class=\"fa fa-pinterest\"></i>");
             }
             );
@@ -240,7 +254,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3517923", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3518287", async() => {
                 WriteLiteral("<i class=\"fa fa-instagram\"></i>");
             }
             );
@@ -255,7 +269,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"team-info\">\r\n                        <h3 class=\"team-name\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3519187", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3519551", async() => {
                 WriteLiteral("JOHN SNOW");
             }
             );
@@ -278,7 +292,7 @@ using Leka.Models;
                 <div class=""team-item"">
                     <div class=""team-avatar"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3520575", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3520939", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -293,7 +307,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        <div class=\"social-network\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3521775", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3522139", async() => {
                 WriteLiteral("<i class=\"fa fa-facebook\"></i>");
             }
             );
@@ -308,7 +322,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3522905", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3523269", async() => {
                 WriteLiteral("<i class=\"fa fa-twitter\"></i>");
             }
             );
@@ -323,7 +337,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3524034", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3524398", async() => {
                 WriteLiteral("<i class=\"fa fa-pinterest\"></i>");
             }
             );
@@ -338,7 +352,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3525165", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3525529", async() => {
                 WriteLiteral("<i class=\"fa fa-instagram\"></i>");
             }
             );
@@ -353,7 +367,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"team-info\">\r\n                        <h3 class=\"team-name\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3526429", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3526793", async() => {
                 WriteLiteral("ZACK");
             }
             );
@@ -376,7 +390,7 @@ using Leka.Models;
                 <div class=""team-item"">
                     <div class=""team-avatar"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3527807", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fa195aeddf21558c767e7fc29a1e40c73dd6de3528171", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -391,7 +405,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        <div class=\"social-network\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3529007", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3529371", async() => {
                 WriteLiteral("<i class=\"fa fa-facebook\"></i>");
             }
             );
@@ -406,7 +420,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3530137", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3530501", async() => {
                 WriteLiteral("<i class=\"fa fa-twitter\"></i>");
             }
             );
@@ -421,7 +435,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3531266", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3531630", async() => {
                 WriteLiteral("<i class=\"fa fa-pinterest\"></i>");
             }
             );
@@ -436,7 +450,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3532397", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3532761", async() => {
                 WriteLiteral("<i class=\"fa fa-instagram\"></i>");
             }
             );
@@ -451,7 +465,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"team-info\">\r\n                        <h3 class=\"team-name\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3533661", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa195aeddf21558c767e7fc29a1e40c73dd6de3534025", async() => {
                 WriteLiteral("LADY");
             }
             );

@@ -283,28 +283,28 @@
         // ACCORDION
         $( ".leka-accordion" ).accordion();
         // Popup add to cart
-        $(document).on('click','.button-add-to-cart',function(){
-            var result ='';
-            result += '<div class="popup-add-to-cart">';
-            result +='       <div class="message">';
-            result +='          <i class="fa fa-check-circle-o"></i>';
-            result +='          <p>YOU HAVE ADDED TO SHOPPING CART</p>';
-            result +='      </div>';
-            result +='      <div class="popup-product">';
-            result +='          <a href="#"><img src="images/products/popup-product.png" alt="" /></a>';
-            result +='          <h3 class="product-name"><a href="#">LONG Tube Dress</a></h3>';
-            result +='          <a href="cart.html" class="button button-view-cart">VIEW SHOPPING CART</a>';
-            result +='          <a href="" class="button button-continue-shop">CONTINUE SHOPPING</a>';
-            result +='      </div>';
-            result +='</div>';
-            $.magnificPopup.open({
-                  items: {
-                    src: result, // can be a HTML string, jQuery object, or CSS selector
-                    type: 'inline'
-                  }
-            });
-            return false;
-        });
+        $('.button-add-to-cart').on('click', function (e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            fetch(url)
+                .then(response => response.text()).
+                then(data => {
+                    $('.list-cart-product').html(data);
+                });
+        })
+
+        $('.remove').on('click', function (e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            fetch(url)
+                .then(response => response.text()).
+                then(data => {
+                    $('.list-cart-product').html(data);
+                });
+
+        })
+
+
         
         // Open form search
         $(document).on('click','.icon-search .icon',function(){

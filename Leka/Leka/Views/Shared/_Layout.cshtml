@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject LayoutService service;
+@{ 
+    double totalAmount = 0;
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from kute-themes.com/html/leka/html/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Oct 2021 06:38:32 GMT -->
@@ -77,11 +81,11 @@
                         <a href="~/#" class="mobile-navigation"><i class="fa fa-bars"></i></a>
                         <nav id="main-menu" class="main-menu">
                             <ul class="navigation">
-                                <li class="menu-item-has-children"><a href="~/index.html">Home</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">About</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Products</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Blogs</a></li>
-                                <li class="menu-item-has-children"><a href="~/#">Contact</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="Home">Home</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="about">About</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="product">Products</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="blog">Blogs</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="contact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -93,37 +97,28 @@
                         <!-- ./Icon search -->
                         <!-- Mini cart -->
                         <div class="mini-cart">
-                            <a class="icon" href="~/#">Cart <span class="count">2</span></a>
+                            <a class="icon" href="~/#">Cart <span class="count">@service.GetBasketItems().Count()</span></a>
                             <div class="mini-cart-content">
                                 <ul class="list-cart-product">
-                                    <li>
-
-                                        <div class="product-thumb">
-                                            <a href="~/#"><img src="~/images/products/product-cart1.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h5 class="product-name"><a href="~/#">Ledtead Predae</a></h5>
-                                            <span class="price">$90.00</span>
-                                            <span class="qty">Qty: 1 - Size: L</span>
-                                            <a href="~/#" class="remove">remove</a>
-                                        </div>
-                                    </li>
-                                    <li>
-
-                                        <div class="product-thumb">
-                                            <a href="~/#"><img src="~/images/products/product-cart2.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h5 class="product-name"><a href="~/#">Ledtead Predae</a></h5>
-                                            <span class="price">$90.00</span>
-                                            <span class="qty">Qty: 1 - Size: M</span>
-                                            <a href="~/#" class="remove">remove</a>
-                                        </div>
-                                    </li>
+                                    @foreach (ProductBasketVM productBasket in service.GetBasketItems())
+                                    {
+                                        totalAmount += (double)productBasket.SalePrice*productBasket.Count;
+                                        <li>
+                                            <div class="product-thumb">
+                                                <a href="~/#"><img src="~/uploads/products/@productBasket.Image" alt="" /></a>
+                                            </div>
+                                            <div class="product-info">
+                                                <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
+                                                <span class="price">$@productBasket.SalePrice X @productBasket.Count</span>
+                                                <span class="qty">Category: @productBasket.CategoryName</span>
+                                                <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                                 <p class="sub-toal-wapper">
                                     <span>SUBTOTAL</span>
-                                    <span class="sub-toal">$180.00</span>
+                                    <span class="sub-toal">$@totalAmount</span>
                                 </p>
                                 <a href="~/#" class="btn-view-cart">VIEW SHOPPING CART</a>
                                 <a href="~/#" class="btn-check-out">PROCESS TO CHECK OUT</a>
