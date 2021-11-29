@@ -291,8 +291,10 @@
                 then(data => {
                     $('.list-cart-product').html(data);
                 });
+
         })
 
+        console.log($('.remove'));
         $('.remove').on('click', function (e) {
             e.preventDefault();
             let url = $(this).attr('href');

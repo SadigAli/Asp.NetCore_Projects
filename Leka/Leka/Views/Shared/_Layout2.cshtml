@@ -1,6 +1,7 @@
 ﻿@inject LayoutService service;
 @{
     double totalAmount = 0;
+    Setting setting = service.GetSetting();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +29,9 @@
         <div class="top-header">
             <div class="container">
                 <div class="top-header-menu">
-                    <a href="~/#"><i class="fa fa-phone"></i> +84 868.8568</a>
-                    <a href="~/#"><i class="fa fa-clock-o"></i> MON - SAT: 08 am - 17 pm</a>
-                    <a href="~/#"><i class="fa fa-envelope-o"></i> Support@wpelite.com</a>
+                    <a href="~/#"><i class="fa fa-phone"></i>@setting?.Phone</a>
+                    <a href="~/#"><i class="fa fa-clock-o"></i>@setting?.WorkGraphic</a>
+                    <a href="~/#"><i class="fa fa-envelope-o"></i>@setting?.Email</a>
                 </div>
                 <div class="top-header-right">
                     <ul>
@@ -75,7 +76,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-3">
                         <div class="logo">
-                            <a href="~/index.html"><img src="~/images/logo2.png" alt="" /></a>
+                            <a href="~/index.html"><img src="~/uploads/setting/@setting?.HeaderLogo" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-9 col-md-9 col-lg-7 main-menu-wapper">
@@ -135,7 +136,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <a href="~/#"><img src="~/images/logo-footer.png" alt=""></a>
+                    <a href="~/#"><img src="~/uploads/setting/@setting?.FooterLogo" alt=""></a>
                 </div>
                 <div class="col-sm-4">
                     <div class="widget">

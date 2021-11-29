@@ -11,7 +11,7 @@
             <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
             <span class="price">$@(productBasket.SalePrice * productBasket.Count)</span>
             <span class="qty">Category: @productBasket.CategoryName</span>
-            <a href="~/#" class="remove">remove</a>
+            <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
         </div>
     </li>
 }

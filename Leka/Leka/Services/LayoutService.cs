@@ -1,4 +1,5 @@
 ﻿using Leka.DAL;
+using Leka.Models;
 using Leka.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -28,6 +29,11 @@ namespace Leka.Services
                 productBaskets = JsonConvert.DeserializeObject<List<ProductBasketVM>>(_accessor.HttpContext.Request.Cookies["basket"]);
             }
             return productBaskets;
+        }
+
+        public Setting GetSetting()
+        {
+            return _context.Settings.FirstOrDefault();
         }
     }
 }
