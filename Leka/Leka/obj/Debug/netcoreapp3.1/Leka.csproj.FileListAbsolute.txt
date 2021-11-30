@@ -336,3 +336,5 @@ C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Lek
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Product\AddImage.cshtml.g.cs
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Product\Edit.cshtml.g.cs
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketPartial.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Team\Index.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Team\Create.cshtml.g.cs
