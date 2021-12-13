@@ -15,6 +15,7 @@ namespace Leka.Models
         public string Link { get; set; }
         [Required, StringLength(50)]
         public string Icon { get; set; }
-
+        public Team Team { get; set; }
+        public int TeamId { get; set; }
     }
 }

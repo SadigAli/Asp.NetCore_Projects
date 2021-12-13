@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title">Colors</h4>
+                    <h4 class="card-title">Teams</h4>
                     <p class="card-description">
                         <a asp-action="create" class="btn btn-success">
                             <i class="mdi mdi-plus"></i>
@@ -43,7 +43,7 @@
                                         @counter
                                     </td>
                                     <td>
-                                        @(team.Name+team.Lastname)
+                                        @(team.Name + " " +team.Lastname)
                                     </td>
                                     <td>@team.Profession</td>
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,8 +16,12 @@ namespace Leka.Models
         public string Lastname { get; set; }
         [Required, StringLength(50)]
         public string Profession { get; set; }
-        public SosialIcon SosialIcon { get; set; }
-        public int SosialIconId { get; set; }
-
+        public List<SosialIcon> SosialIcons { get; set; }
+        [NotMapped]
+        public List<string> Sosials { get; set; }
+        [NotMapped]
+        public List<string> Links { get; set; }
+        [NotMapped]
+        public List<int> SosialIconIds { get; set; }
     }
 }

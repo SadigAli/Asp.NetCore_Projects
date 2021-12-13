@@ -76,7 +76,8 @@ namespace Leka
                 
                 endpoints.MapControllerRoute("Default", "{Controller=home}/{Action=index}/{Id?}");
                 endpoints.MapControllerRoute("Default1", "about-us", defaults: new { Controller="Home", Action="About" });
-                endpoints.MapControllerRoute("Default1", "contact-us", defaults: new { Controller = "Home", Action = "Contact" });
+                endpoints.MapControllerRoute("Default2", "contact-us", defaults: new { Controller = "Home", Action = "Contact" });
+                endpoints.MapControllerRoute("Default3", "login", defaults: new { Controller = "Account", Action = "login" });
 
             });
         }
