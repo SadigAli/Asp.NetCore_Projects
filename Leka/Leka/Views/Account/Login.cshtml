@@ -32,15 +32,19 @@
                     <div class="form-contact">
                         <form method="post">
                             <div id="message-box-conact"></div>
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             <p>
                                 <label>Username <span class="required">*</span></label>
                                 <input id="Username" asp-for="Username" />
+                                <span class="text-danger my-2" asp-validation-for="Username"></span>
                             </p>
                             <p>
                                 <label>Password <span class="required">*</span></label>
                                 <input id="Password" asp-for="Password" />
+                                <span class="text-danger my-2" asp-validation-for="Password"></span>
                             </p>
                             <button id="btn-send-contact" type="submit" class="button">Login</button>
+                            <a href="/register">Haven't you an account? Register</a>
                         </form>
                     </div>
                 </div>

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Leka.Controllers
+namespace Leka.Areas.manage.Controllers
 {
-    public class AccountController:Controller
+    [Area("manage")]
+    public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
+
 
         public AccountController(UserManager<AppUser> userManager,
                                  RoleManager<IdentityRole> roleManager,
@@ -23,43 +25,17 @@ namespace Leka.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-        public IActionResult Register()
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async  Task<IActionResult> Register()
         {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterVM register)
-        {
-            if (!ModelState.IsValid) return View();
-
-            AppUser user = await _userManager.FindByNameAsync(register.Username);
-            if(user != null)
+            AppUser admin = new AppUser
             {
-                ModelState.AddModelError("Username", "This user is already existed!");
-                return View();
-            }
-
-            user = new AppUser
-            {
-                Email = register.Email,
-                UserName = register.Username,
-                Fullname = register.Fullname,
-                IsAdmin = false
+                UserName = "SuperAdmin",
+                IsAdmin = true
             };
-
-            var result = await _userManager.CreateAsync(user, register.Password);
-
-            if (!result.Succeeded)
-            {
-                foreach (IdentityError error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                    return View();
-                }
-            }
-
-            await _userManager.AddToRoleAsync(user, "Member");
+            await _userManager.CreateAsync(admin, "Admin123");
+            await _userManager.AddToRoleAsync(admin, "SuperAdmin");
             return RedirectToAction(nameof(Login));
         }
         public IActionResult Login()
@@ -79,20 +55,19 @@ namespace Leka.Controllers
                 return View();
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, login.Password,true,false);
+            var result = await _signInManager.PasswordSignInAsync(user, login.Password, true, false);
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect!");
                 return View();
             }
-            return RedirectToAction("index", "home");
+            return RedirectToAction("index", "dashboard", new { Area="manage" });
         }
 
-        public async Task<IActionResult> Logout()
+        public async Task CreateRole()
         {
-            await _signInManager.SignOutAsync();
-            return Redirect(HttpContext.Request.Headers["Referer"].ToString());
+            if (!await _roleManager.RoleExistsAsync("SuperAdmin"))
+                await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
         }
-
     }
 }

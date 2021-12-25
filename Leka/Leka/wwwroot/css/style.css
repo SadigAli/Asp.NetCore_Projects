@@ -3249,13 +3249,14 @@ latest blog
 .product-tabs .review_form p{
     margin-bottom: 20px;
 }
-.product-tabs .review_form input[type="text"],
-.product-tabs .review_form input[type="email"],
-.product-tabs .review_form textarea{
-    border: 1px solid #c9c9c9;
-    width: 100%;
-    max-width: 100%;
-}
+    .product-tabs .review_form input[type="text"],
+    .product-tabs .review_form input[type="email"],
+    .product-tabs .review_form input[type="password"],
+    .product-tabs .review_form textarea {
+        border: 1px solid #c9c9c9;
+        width: 100%;
+        max-width: 100%;
+    }
 .product-tabs .review_form input[type="text"],
 .product-tabs .review_form input[type="email"]{
     height: 45px;
@@ -4616,7 +4617,8 @@ span.required{
 }
 .form-contact input[type="text"],
 .form-contact input[type="email"],
-.form-contact textarea{
+.form-contact input[type="password"],
+.form-contact textarea {
     width: 100%;
     max-width: 100%;
 }

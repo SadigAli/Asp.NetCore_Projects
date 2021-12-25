@@ -34,8 +34,16 @@
                 </div>
                 <div class="top-header-right">
                     <ul>
-                        <li><a href="~/#"><i class="fa fa-key"></i> LOGIN</a></li>
-                        <li><a href="~/#"><i class="fa fa-user"></i> REGISTER</a></li>
+                        <li>
+                            <a href="@(User.Identity.IsAuthenticated?"/logout":"login")">
+                                <i class="fa fa-key"></i> @(User.Identity.IsAuthenticated ? "LOGOUT" : "LOGIN")
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@(User.Identity.IsAuthenticated?"/profile":"/register")">
+                                <i class="fa fa-user"></i>@(User.Identity.IsAuthenticated ? User.Identity.Name :"REGISTER")
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a data-toggle="dropdown" href="~/#"><i class="fa fa-cog"></i> SETTINGS</a>
                             <ul class="dropdown-menu">

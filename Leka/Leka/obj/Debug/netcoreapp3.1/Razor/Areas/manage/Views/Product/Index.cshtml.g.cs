@@ -19,8 +19,15 @@ using Leka.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\Areas\manage\Views\_ViewImports.cshtml"
+using Leka.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c2fbab268890a306f742ff1d05fab097fa16ded5", @"/Areas/manage/Views/Product/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"115d6b73c746c7dc4058b9fb93a2f4965abf8196", @"/Areas/manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b7c33779ead0433423acef8d5c6ff2336fffcf76", @"/Areas/manage/Views/_ViewImports.cshtml")]
     public class Areas_manage_Views_Product_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Product>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -182,7 +189,7 @@ using Leka.Models;
                     <h4 class=""card-title"">Categories</h4>
                     <p class=""card-description"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded59805", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded510001", async() => {
                 WriteLiteral("\r\n                            <i class=\"mdi mdi-plus\"></i>\r\n                        ");
             }
             );
@@ -264,7 +271,7 @@ using Leka.Models;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded513728", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded513925", async() => {
                 WriteLiteral("\r\n                                        <i class=\"mdi mdi-pen\"></i>\r\n                                    ");
             }
             );
@@ -296,7 +303,7 @@ using Leka.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded516141", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded516338", async() => {
                 WriteLiteral("\r\n                                        <i class=\"mdi mdi-trash-can\"></i>\r\n                                    ");
             }
             );
@@ -395,7 +402,7 @@ WriteAttributeValue("", 6455, "#"+productColor.Color.Code, 6455, 30, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c2fbab268890a306f742ff1d05fab097fa16ded521994", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c2fbab268890a306f742ff1d05fab097fa16ded522191", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -429,7 +436,7 @@ AddHtmlAttributeValue("", 6931, productColor.ProductImages.FirstOrDefault(x=>x.P
 #line hidden
 #nullable disable
             WriteLiteral("                                                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded524123", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded524320", async() => {
                 WriteLiteral("\r\n                                                                        <i class=\"mdi mdi-plus\"></i>\r\n                                                                    ");
             }
             );
@@ -488,7 +495,7 @@ AddHtmlAttributeValue("", 6931, productColor.ProductImages.FirstOrDefault(x=>x.P
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                                            <td>\r\n                                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded528364", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded528561", async() => {
                 WriteLiteral("\r\n                                                                    <i class=\"mdi mdi-pen\"></i>\r\n                                                                ");
             }
             );
@@ -531,7 +538,7 @@ AddHtmlAttributeValue("", 6931, productColor.ProductImages.FirstOrDefault(x=>x.P
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded531759", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2fbab268890a306f742ff1d05fab097fa16ded531956", async() => {
                 WriteLiteral("\r\n                                                                    <i class=\"mdi mdi-trash-can\"></i>\r\n                                                                ");
             }
             );

@@ -32,27 +32,34 @@
                     <div class="form-contact">
                         <form method="post">
                             <div id="message-box-conact"></div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
                             <p>
                                 <label>Fullname <span class="required">*</span></label>
                                 <input id="Fullname" asp-for="Fullname" />
+                                <span class="text-danger" asp-validation-for="Fullname"></span>
                             </p>
                             <p>
                                 <label>Email <span class="required">*</span></label>
                                 <input id="Email" asp-for="Email" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
                             </p>
                             <p>
                                 <label>Username <span class="required">*</span></label>
                                 <input id="Username" asp-for="Username" />
+                                <span class="text-danger" asp-validation-for="Username"></span>
                             </p>
                             <p>
                                 <label>Password <span class="required">*</span></label>
                                 <input id="Password" asp-for="Password" />
+                                <span class="text-danger" asp-validation-for="Password"></span>
                             </p>
                             <p>
                                 <label>Confirm Password <span class="required">*</span></label>
                                 <input id="ConfirmPassword" asp-for="ConfirmPassword" />
+                                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                             </p>
-                            <button id="btn-send-contact" type="submit" class="button">Login</button>
+                            <button id="btn-send-contact" type="submit" class="button">Register</button>
+                            <a href="/login">Have you an account? Login</a>
                         </form>
                     </div>
                 </div>

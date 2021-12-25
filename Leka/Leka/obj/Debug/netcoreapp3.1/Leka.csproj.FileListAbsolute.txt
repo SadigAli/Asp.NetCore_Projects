@@ -341,3 +341,5 @@ C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Raz
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Team\Edit.cshtml.g.cs
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Account\Register.cshtml.g.cs
+C:\Users\ACER\Desktop\Asp.NetCore_Projects\Leka\Leka\obj\Debug\netcoreapp3.1\Razor\Areas\manage\Views\Account\Login.cshtml.g.cs

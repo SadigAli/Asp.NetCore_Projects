@@ -1,0 +1,49 @@
+﻿@model LoginVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/manage/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/manage/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/manage/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/manage/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="~/manage/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="~/manage/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/manage/vendors/datatables.net-bs4/dataTables.bootstrap4.html">
+    <link rel="stylesheet" href="~/manage/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+
+    <link rel="stylesheet" href="~/manage/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/manage/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/manage/css/vertical-layout-light/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <form method="post">
+                <div class="form-group my-2">
+                    <label asp-for="Username">Username</label>
+                    <input class="form-control" asp-for="Username" />
+                    <span class="text-danger my-2" asp-validation-for="Username"></span>
+                </div>
+                <div class="form-group my-2">
+                    <label asp-for="Password">Password</label>
+                    <input class="form-control" asp-for="Password" />
+                    <span class="text-danger my-2" asp-validation-for="Password"></span>
+                </div>
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
