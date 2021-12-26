@@ -1,5 +1,10 @@
 ﻿@model List<ProductBasketVM>
+@{
+    double total = Model.Sum(x => x.Count * x.SalePrice);
+}
 
+<input type="hidden" class="productCount" value="@Model.Count()" />
+<input type="hidden" class="totalAmount" value="@total">
 @foreach (ProductBasketVM productBasket in Model)
 {
     <li>
@@ -11,7 +16,24 @@
             <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
             <span class="price">$@(productBasket.SalePrice * productBasket.Count)</span>
             <span class="qty">Category: @productBasket.CategoryName</span>
-            <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
+            <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId"
+            class="remove">remove</a>
         </div>
     </li>
 }
+
+<script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+<script>
+    $('.remove').on('click', function (e) {
+        e.preventDefault();
+        let url = $(this).attr('href');
+        fetch(url)
+            .then(response => response.text()).
+            then(data => {
+                $('.list-cart-product').html(data);
+                
+                $('span.count').text($('.productCount').val());
+                $('.sub-toal').text(`$${$('.totalAmount').val()}`);
+            });
+    });
+</script>

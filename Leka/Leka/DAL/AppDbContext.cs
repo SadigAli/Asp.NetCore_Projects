@@ -27,5 +27,6 @@ namespace Leka.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductBasket> ProductBaskets { get; set; }
     }
 }

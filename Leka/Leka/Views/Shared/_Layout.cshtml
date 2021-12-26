@@ -1,7 +1,9 @@
 ﻿@inject LayoutService service;
 @{ 
-    double totalAmount = 0;
     Setting setting = service.GetSetting();
+    List<ProductBasketVM> productBaskets = await service.GetBasketItems();
+    double totalAmount = productBaskets.Sum(x=>x.Count*x.SalePrice);
+        
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -90,11 +92,11 @@
                         <a href="~/#" class="mobile-navigation"><i class="fa fa-bars"></i></a>
                         <nav id="main-menu" class="main-menu">
                             <ul class="navigation">
-                                <li class="menu-item-has-children"><a asp-controller="Home">Home</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="about">About</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="product">Products</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="blog">Blogs</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="contact">Contact</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="Home" asp-action="index">Home</a></li>
+                                <li class="menu-item-has-children"><a href="/about-us">About</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="product" asp-action="index">Products</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="blog" asp-action="index">Blogs</a></li>
+                                <li class="menu-item-has-children"><a href="/contact-us">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -106,31 +108,17 @@
                         <!-- ./Icon search -->
                         <!-- Mini cart -->
                         <div class="mini-cart">
-                            <a class="icon" href="~/#">Cart <span class="count">@service.GetBasketItems().Count()</span></a>
+                            <a class="icon" href="~/#">Cart <span class="count">@productBaskets.Count()</span></a>
                             <div class="mini-cart-content">
                                 <ul class="list-cart-product">
-                                    @foreach (ProductBasketVM productBasket in service.GetBasketItems())
-                                    {
-                                        totalAmount += (double)productBasket.SalePrice*productBasket.Count;
-                                        <li>
-                                            <div class="product-thumb">
-                                                <a href="~/#"><img src="~/uploads/products/@productBasket.Image" alt="" /></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
-                                                <span class="price">$@productBasket.SalePrice X @productBasket.Count</span>
-                                                <span class="qty">Category: @productBasket.CategoryName</span>
-                                                <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
-                                            </div>
-                                        </li>
-                                    }
+                                    @await Html.PartialAsync("_BasketPartial",productBaskets)
                                 </ul>
                                 <p class="sub-toal-wapper">
                                     <span>SUBTOTAL</span>
                                     <span class="sub-toal">$@totalAmount</span>
                                 </p>
-                                <a href="~/#" class="btn-view-cart">VIEW SHOPPING CART</a>
-                                <a href="~/#" class="btn-check-out">PROCESS TO CHECK OUT</a>
+                                <a href="#" class="btn-view-cart">VIEW SHOPPING CART</a>
+                                <a href="/checkout" class="btn-check-out">PROCESS TO CHECK OUT</a>
                             </div>
                         </div>
                         <!-- ./Mini cart -->

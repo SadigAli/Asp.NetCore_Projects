@@ -108,7 +108,6 @@
             var h = $(window).scrollTop();
             var width = $(window).width();
             var main_menu_offset = $('#main-menu').offset();
-            console.log(main_menu_offset);
             if(width > 991){
                 if((h >= main_menu_offset.top  -1) && h !=0){
                     $('.header').addClass('stick');
@@ -290,21 +289,13 @@
                 .then(response => response.text()).
                 then(data => {
                     $('.list-cart-product').html(data);
+                    $('span.count').text($('.productCount').val());
+                    $('.sub-toal').text(`$${$('.totalAmount').val()}`);
                 });
 
         })
 
-        console.log($('.remove'));
-        $('.remove').on('click', function (e) {
-            e.preventDefault();
-            let url = $(this).attr('href');
-            fetch(url)
-                .then(response => response.text()).
-                then(data => {
-                    $('.list-cart-product').html(data);
-                });
-
-        })
+        
 
 
         

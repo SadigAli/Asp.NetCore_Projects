@@ -2,11 +2,13 @@
 @{
     double totalAmount = 0;
     Setting setting = service.GetSetting();
+    List<ProductBasketVM> productBaskets = await service.GetBasketItems();
 }
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from kute-themes.com/html/leka/html/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Oct 2021 06:18:13 GMT -->
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
@@ -20,10 +22,12 @@
     <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="~/css/animate.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600,600italic,700,700italic'
+        rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/css/style.css">
 </head>
+
 <body class="home">
     <header class="header header-style3">
         <div class="top-header">
@@ -42,7 +46,8 @@
                         </li>
                         <li>
                             <a href="@(User.Identity.IsAuthenticated?"/profile":"/register")">
-                                <i class="fa fa-user"></i>@(User.Identity.IsAuthenticated ? User.Identity.Name :"REGISTER")
+                                <i class="fa fa-user"></i>@(User.Identity.IsAuthenticated ? User.Identity.Name
+                                :"REGISTER")
                             </a>
                         </li>
                         <li class="dropdown">
@@ -91,11 +96,14 @@
                         <a href="~/#" class="mobile-navigation"><i class="fa fa-bars"></i></a>
                         <nav id="main-menu" class="main-menu">
                             <ul class="navigation">
-                                <li class="menu-item-has-children"><a asp-controller="Home">Home</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="about">About</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="product">Products</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="blog">Blogs</a></li>
-                                <li class="menu-item-has-children"><a asp-controller="home" asp-action="contact">Contact</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="Home" asp-action="index">Home</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="/about-us">About</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="product"
+                                        asp-action="index">Products</a></li>
+                                <li class="menu-item-has-children"><a asp-controller="blog" asp-action="index">Blogs</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="/contact-us">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -107,23 +115,10 @@
                         <!-- ./Icon search -->
                         <!-- Mini cart -->
                         <div class="mini-cart">
-                            <a class="icon" href="~/#">Cart <span class="count">@service.GetBasketItems().Count()</span></a>
+                            <a class="icon" href="~/#">Cart <span class="count">@productBaskets.Count()</span></a>
                             <div class="mini-cart-content">
                                 <ul class="list-cart-product">
-                                    @foreach (ProductBasketVM productBasket in service.GetBasketItems())
-                                    {
-                                        totalAmount += (double)productBasket.SalePrice * productBasket.Count;
-                        <li>
-                            <div class="product-thumb">
-                                <a href="~/#"><img src="~/uploads/products/@productBasket.Image" alt="" /></a>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
-                                <span class="price">$@productBasket.SalePrice X @productBasket.Count</span>
-                                <span class="qty">Category: @productBasket.CategoryName</span>
-                                <a asp-controller="product" asp-action="RemoveBasket" asp-route-id="@productBasket.ProductId" class="remove">remove</a>
-                            </div>
-                        </li>}
+                                    @await Html.PartialAsync("_BasketPartial",productBaskets)
                                 </ul>
                                 <p class="sub-toal-wapper">
                                     <span>SUBTOTAL</span>
@@ -148,7 +143,8 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="widget">
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                        classical Latin literature from 45 BC, making it over
                     </div>
                     <div class="widget widget-social">
                         <div class="list-social">
@@ -162,7 +158,8 @@
                     <div class="widget widget-newaletter">
                         <form>
                             <input type="text" class="newaletter-email" placeholder="EMAIL FOR NEWSLETTER">
-                            <span><button type="submit" class="newaletter-button"><i class="fa fa-envelope-o"></i></button></span>
+                            <span><button type="submit" class="newaletter-button"><i
+                                        class="fa fa-envelope-o"></i></button></span>
                         </form>
                     </div>
                 </div>
@@ -245,4 +242,5 @@
 </body>
 
 <!-- Mirrored from kute-themes.com/html/leka/html/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Oct 2021 06:21:14 GMT -->
+
 </html>
