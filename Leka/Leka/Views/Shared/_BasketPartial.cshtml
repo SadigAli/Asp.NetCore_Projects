@@ -14,7 +14,7 @@
         </div>
         <div class="product-info">
             <h5 class="product-name"><a href="~/#">@productBasket.ProductName</a></h5>
-            <span class="price">$@(productBasket.SalePrice * productBasket.Count)</span>
+            <span class="price">$@productBasket.SalePrice x @productBasket.Count</span>
             <span class="qty">Category: @productBasket.CategoryName</span>
             <a asp-controller="product" asp-action="removebasket" asp-route-id="@productBasket.ProductId"
             class="remove">remove</a>

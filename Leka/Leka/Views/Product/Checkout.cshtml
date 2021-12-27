@@ -1,0 +1,160 @@
+@inject UserManager<AppUser> usermanager;
+@model OrderVM
+@{
+    ViewData["Title"] = "Checkout";
+    double total = 0;
+    AppUser user = null;
+    if(User.Identity.IsAuthenticated){
+        user = await usermanager.FindByNameAsync(User.Identity.Name);
+    }
+}
+
+<section class="banner banner-cart bg-parallax">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="banner-content text-center">
+            <h2 class="page-title">CHECK OUT PAGE</h2>
+            <div class="breadcrumbs">
+                <a href="#">Home</a>
+                <span>CHECK OUT PAGE</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="maincontainer">
+    <form method="post" id="order">
+        <div class="container">
+            <div class="checkout-page">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form">
+                            <h3 class="form-title">BILLING DETAILS</h3>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>
+                                        <label>FIRST NAME <span class="required">*</span></label>
+                                        <input asp-for="Name" />
+                                        <span asp-validation-for="Name"
+                                            style="display:inline-block;margin:5px 0"></span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>
+                                        <label>LAST NAME <span class="required">*</span></label>
+                                        <input asp-for="Lastname" />
+                                        <span asp-validation-for="Lastname"
+                                            style="display:inline-block;margin:5px 0"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p>
+                                <label>ADDRESS <span class="required">*</span></label>
+                                <input asp-for="Address" />
+                                <span asp-validation-for="Address" style="display:inline-block;margin:5px 0"></span>
+                            </p>
+                            <p>
+                                <label>TOWN / CITY <span class="required">*</span></label>
+                                <input asp-for="City" />
+                                <span asp-validation-for="City" style="display:inline-block;margin:5px 0"></span>
+                            </p>
+                            <p>
+                                <label>POSTAL / ZIP CODE <span class="required">*</span></label>
+                                <input asp-for="ZipCode" />
+                                <span asp-validation-for="ZipCode" style="display:inline-block;margin:5px 0"></span>
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>
+                                        <label>EMAIL ADDRESS <span class="required">*</span></label>
+                                        <input asp-for="Email" value=@(user!=null?user.Email:null) />
+                                        <span asp-validation-for="Email"
+                                            style="display:inline-block;margin:5px 0"></span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>
+                                        <label>PHONE NUMBER <span class="required">*</span></label>
+                                        <input asp-for="Phone" value=@(user!=null?user.PhoneNumber:null) />
+                                        <span asp-validation-for="Phone"
+                                            style="display:inline-block;margin:5px 0"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <h3 class="form-title">YOUR ODERS</h3>
+                        <div class="order-review">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Product name</td>
+                                        <td>Count</td>
+                                        <td>Sub total</td>
+                                    </tr>
+                                    @foreach (ProductBasketVM product in Model.ProductBaskets)
+                                    {
+                                        <input type="hidden" name="BasketIds[]" value="@product.ProductId" />
+                                        total += product.Count * product.SalePrice;
+                                        <tr>
+                                            <td>@product.ProductName</td>
+                                            <td>@product.Count</td>
+                                            <td><span class="amount">$@product.SalePrice.ToString("F2")</span></td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="2">SHIPPING & HANDLING</td>
+                                        <td>
+                                            FREE SHIPPINg
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">ORDER TOTAL</td>
+                                        <td>
+                                            <span class="amount">$@total</span>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="paymment-method">
+                            <h3 class="form-title">PAYMENT METHOD</h3>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    SHIP TO BILLING ADDRESS ?
+                                </label>
+                                <br />
+                                <small>Make your payment directly into our bank account. Please use your Order ID as the
+                                    payment
+                                    reference. Your order won’t be shipped until the funds have cleared in our
+                                    account.</small>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    CEQUE PAYMENT
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    PAYPAL
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    I’VE READ AND ACCEPT THE TEMR & CONDITIONS
+                                </label>
+                            </div>
+                        </div>
+                        <button class="button pull-right" type="submit" form="order">PLACE ODER NOW</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+</div>

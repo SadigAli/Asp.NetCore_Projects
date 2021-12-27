@@ -1,5 +1,4 @@
-﻿using Leka.DAL;
-using Leka.Models;
+﻿using Leka.Models;
 using Leka.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leka.Services;
+using Leka.DAL;
+using Leka.Models.Enums;
 
 namespace Leka.Controllers
 {
@@ -16,11 +18,16 @@ namespace Leka.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _usermanager;
-
-        public ProductController(AppDbContext context, UserManager<AppUser> usermanager)
+        private readonly LayoutService _service;
+        
+        
+        public ProductController(AppDbContext context,
+                                 UserManager<AppUser> usermanager,
+                                 LayoutService service)
         {
             _context = context;
             _usermanager = usermanager;
+            _service = service;
         }
         public IActionResult Index(int? page = 1)
         {
@@ -158,6 +165,62 @@ namespace Leka.Controllers
             }
 
             return PartialView("_BasketPartial", productBaskets);
+        }
+
+        public async Task<IActionResult> Checkout()
+        {   
+            List<ProductBasketVM> products = await _service.GetBasketItems(); 
+            OrderVM model = new OrderVM
+            {
+                ProductBaskets = products  
+            };        
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout(OrderVM order)
+        {
+            List<ProductBasketVM> products = await _service.GetBasketItems();
+            AppUser user = User.Identity.IsAuthenticated ? await _usermanager.FindByNameAsync(User.Identity.Name) : null;
+            order.ProductBaskets = products;
+            if(!ModelState.IsValid) return View(order);
+            Order newOrder = new Order
+            {
+                Address = order.Address,
+                AppUserId = user!=null ? user.Id : null,
+                Email = order.Email,
+                Fullname = order.Name + " " + order.Lastname,
+                Phone = order.Phone,
+                ZipCode = order.ZipCode,
+                OrderStatus = OrderStatus.Pending,
+                Date = DateTime.UtcNow.AddHours(4)
+            };
+            newOrder.OrderItems = new List<OrderItem>();
+            double totalPrice=0;
+            foreach(ProductBasketVM product in products)
+            {
+                totalPrice+=product.SalePrice*product.Count;
+                newOrder.OrderItems.Add(new OrderItem
+                {
+                    Count = 1,
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    ProductPrice = product.SalePrice,
+                });
+                newOrder.TotalPrice=totalPrice;
+            }
+            _context.Orders.Add(newOrder);
+            _context.SaveChanges();
+            if(user==null)
+            {
+                HttpContext.Response.Cookies.Delete("Basket");
+            }else
+            {
+                _context.ProductBaskets.RemoveRange(_context.ProductBaskets.Where(x=>x.AppUserId==user.Id));
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

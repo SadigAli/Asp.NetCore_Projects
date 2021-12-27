@@ -14517,6 +14517,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Views\\Product\\Checkout.cshtml",
+      "TargetPath": "Views\\Product\\Checkout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Areas\\manage\\Views\\Color\\Edit.cshtml",
       "TargetPath": "Areas\\manage\\Views\\Color\\Edit.cshtml",
       "FileKind": "mvc"

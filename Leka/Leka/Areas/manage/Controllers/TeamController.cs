@@ -46,12 +46,12 @@ namespace Leka.Areas.manage.Controllers
             }
             if (!team.Photo.CheckContent())
             {
-                ModelState.AddModelError("Image", "Select file in correct format!");
+                ModelState.AddModelError("Photo", "Select file in correct format!");
                 return View();
             }
             if (team.Photo.CheckSize(200))
             {
-                ModelState.AddModelError("Image", "File is too long");
+                ModelState.AddModelError("Photo", "File is too long");
                 return View();
             }
             string path = Path.Combine(_env.WebRootPath, "uploads", "team");

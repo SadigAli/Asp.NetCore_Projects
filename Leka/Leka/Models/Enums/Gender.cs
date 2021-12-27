@@ -11,4 +11,11 @@ namespace Leka.Models.Enums
         Female,
         Both
     }
+
+    public enum OrderStatus
+    {
+        Pending,
+        Accepted,
+        Rejected
+    }
 }
