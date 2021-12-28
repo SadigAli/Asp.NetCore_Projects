@@ -29,20 +29,43 @@ namespace Leka.Controllers
             _usermanager = usermanager;
             _service = service;
         }
-        public IActionResult Index(int? page = 1)
+        public IActionResult Index(int min=0,int max=350,int page = 1,Dictionary<int,string> categories=null,
+                                    Dictionary<int,string> colors = null)
         {
             var query = _context.Products
                                 .Include(x => x.Category)
                                 .Include(x => x.ProductColors).ThenInclude(x => x.Color)
                                 .Include(x => x.ProductColors).ThenInclude(x => x.ProductImages)
-                                .Include(x => x.ProductTags).ThenInclude(x => x.Tag)
-                                .OrderByDescending(x => x.Id).Skip(((int)page - 1) * 6).Take(6).AsQueryable();
+                                .Include(x => x.ProductTags).ThenInclude(x => x.Tag).AsEnumerable();
             ViewBag.Count = _context.Products.Count();
             ViewBag.Page = page;
-            List<Product> products = query.ToList();
+            ViewBag.Categories=_context.Categories.ToList();
+            ViewBag.Colors = _context.Colors.ToList();
+            ViewBag.FilterCategories = categories;
+            ViewBag.FilterColors = colors;
+            if(min > 0)
+            {
+                query = query.Where(x=>x.SalePrice-x.DiscountPrice > min && x.SalePrice - x.DiscountPrice<max);
+            }
+            if(categories.Count!=0)
+            {
+                query = query.Where(x=>categories.ContainsKey(x.CategoryId));
+            }
+            // if(colors!=null)
+            // {
+            //     foreach (Product product in query.ToList())
+            //     {
+            //         foreach (var item in product.ProductColors)
+            //         {
+            //             query.Union(query.Where(x=>colors.ContainsKey(item.ColorId)));
+            //         }
+            //     }
+            // }
+            List<Product> products = query.OrderByDescending(x => x.Id)
+                                            .Skip((page - 1) * 6).Take(6).ToList();
             return View(products);
         }
-
+        
         public IActionResult Detail()
         {
             return View();

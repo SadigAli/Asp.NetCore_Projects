@@ -33,6 +33,11 @@ namespace Leka.Models
         public List<int> ProductColorIds { get; set; }
         [NotMapped]
         public List<int> ProductTagIds { get; set; }
+        [NotMapped]
+        public List<string> Categories { get; set; }
+        
+        [NotMapped]
+        public List<string> Colors { get; set; }
 
     }
 }

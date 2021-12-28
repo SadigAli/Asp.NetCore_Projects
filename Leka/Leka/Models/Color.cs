@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Leka.ViewModels;
 
 namespace Leka.Models
 {
@@ -14,5 +16,7 @@ namespace Leka.Models
         [Required, StringLength(10)]
         public string Code { get; set; }
         public List<ProductColor> ProductColors { get; set; }
+        [NotMapped]
+        public List<FilterSelectionVM> Selections { get; set; }
     }
 }

@@ -10,7 +10,7 @@
                 <!-- Sortbar -->
                 <div class="sortBar">
                     <div class="sortBar-left">
-                        <form class="ordering">
+                        <form class="ordering" >
                             <select>
                                 <option value="">SHORT BY</option>
                                 <option value="">Sort by popularity</option>
@@ -43,7 +43,9 @@
                         <li class="product col-sm-6 col-md-4">
                             <div class="product-thumb">
                                 <a href="single-product.html">
-                                    <img width="200" height="250" src="~/uploads/products/@product.ProductColors.FirstOrDefault()?.ProductImages.FirstOrDefault(x=>x.PosterStatus==true).Image" alt="">
+                                    <img width="200" height="250"
+                                    src="~/uploads/products/@product.ProductColors.FirstOrDefault()?.ProductImages.FirstOrDefault(x=>x.PosterStatus==true).Image"
+                                    alt="">
                                 </a>
                                 <div class="product-button">
                                     <a href="#" class="button-compare">Compare</a>
@@ -53,8 +55,10 @@
                             </div>
                             <div class="product-info">
                                 <h3><a href="#">@product.Name</a></h3>
-                                <span class="product-price">$@(product.DiscountPrice!=0?product.SalePrice-product.DiscountPrice:product.SalePrice)</span>
-                                <a asp-controller="product" asp-action="addtocart" asp-route-id="@product.Id" class="button-add-to-cart">ADD TO CART</a>
+                                <span
+                                class="product-price">$@(product.DiscountPrice!=0?product.SalePrice-product.DiscountPrice:product.SalePrice)</span>
+                                <a asp-controller="product" asp-action="addtocart" asp-route-id="@product.Id"
+                                class="button-add-to-cart">ADD TO CART</a>
                             </div>
                         </li>
                     }
@@ -87,93 +91,95 @@
                 <!-- ./ List Products -->
             </div>
             <!-- Sliderbar -->
-            <div class="col-sm-4 col-md-3 sidebar">
-                <!-- Product category -->
-                <div class="widget widget_product_categories">
-                    <h2 class="widget-title">By Categories</h2>
-                    <ul class="product-categories">
-                        <li class="cat-parent current-cat-parent">
-                            <a href="#">Accessories</a>
-                            <ul class="children">
-                                <li class="current-cat"><a href="#">Men</a></li>
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Kids</a></li>
-                            </ul>
-                        </li>
-                        <li class="cat-parent">
-                            <a href="#">Handbags</a>
-                            <ul class="children">
-                                <li><a href="#">Men bags</a></li>
-                                <li><a href="#">Women bags</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Mencare</a></li>
-                        <li><a href="#">Watches</a></li>
-                        <li><a href="#">Clothings</a></li>
-                        <li><a href="#">Jackets</a></li>
-                        <li><a href="#">Jeans</a></li>
-                        <li><a href="#">T-Shirts</a></li>
-                        <li><a href="#">Shoes</a></li>
-                    </ul>
-                </div>
-                <!-- ./Product category -->
-                <!-- Filter color -->
-                <div class="widget widget_layered_nav">
-                    <h2 class="widget-title">BY COLORS</h2>
-                    <ul>
-                        <li><a href="#">RED</a></li>
-                        <li><a href="#">BLUE</a></li>
-                        <li><a href="#">CYAN</a></li>
-                        <li><a href="#">ORANGER</a></li>
-                        <li><a href="#">BLACK & WHITE</a></li>
-                        <li><a href="#">PURPULE</a></li>
-                    </ul>
-                </div>
-                <!-- ./Filter color -->
-                <!-- Filter price -->
-                <div class="widget widget_price_filter">
-                    <h2 class="widget-title">BY PRICES</h2>
-                    <div class="price_slider_wrapper">
-                        <div class="amount-range-price">$50 - $350</div>
-                        <div data-label-reasult="" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50" data-value-max="350"></div>
-                        <form>
-                            <input type="hidden" name="min" class="min" value="50" />
-                            <input type="hidden" name="max" class="max" value="350" />
-                            <button class="button" type="submit">Filter</button>
-                        </form>
+            <form>
+                <div class="col-sm-4 col-md-3 sidebar">
+                    <!-- Product category -->
+                    <div class="widget widget_product_categories">
+                        <h2 class="widget-title">By Categories</h2>
+                        <ul class="product-categories">
+                            @foreach (Category item in ViewBag.Categories)
+                            {
+                                string name=String.Format("categories[{0}]",item.Id);
+                                if(ViewBag.FilterCategories!=null)
+                                {
+                                    if(ViewBag.FilterCategories.ContainsKey(item.Id))
+                                    {
+                                        <li><input type="checkbox" name="@name" checked value="@item.Name"/>@item.Name</li>
+                                    }else
+                                    {
+                                        <li><input type="checkbox" name="@name" value="@item.Name"/>@item.Name</li>
+                                    }
+                                }
+                            }
+                        </ul>
                     </div>
-                </div>
-                <!-- ./Filter price -->
-                <!-- Compare products -->
-                <div class="widget yith-woocompare-widget">
-                    <h2 class="widget-title">COMPARE PRODUCTS</h2>
-                    <div class="no-product">
-                        NO PRODUCTS HAVE COMPARE
+                    <!-- ./Product category -->
+                    <!-- Filter color -->
+                    <div class="widget widget_layered_nav">
+                        <h2 class="widget-title">BY COLORS</h2>
+                        <ul>
+                            @foreach(Color item in ViewBag.Colors)
+                            {
+                                string name=String.Format("colors[{0}]",item.Id);
+                                if(ViewBag.FilterColors!=null)
+                                {
+                                    if(ViewBag.FilterColors.ContainsKey(item.Id))
+                                    {
+                                        <li><input type="checkbox" name="@name" checked value="@item.Name"/>@item.Name</li>
+                                    }else
+                                    {
+                                        <li><input type="checkbox" name="@name" value="@item.Name"/>@item.Name</li>
+                                    }
+                                }
+                            }
+                            
+                        </ul>
                     </div>
-                </div>
-                <!-- ./Compare products -->
-                <!-- Product tags -->
-                <div class="widget widget_product_tag_cloud">
-                    <h2 class="widget-title">POPULAR TAGS</h2>
-                    <div class="tagcloud">
-                        <a href="#">Cotton</a>
-                        <a href="#">Leggings</a>
-                        <a href="#">Men</a>
-                        <a href="#">Shirt</a>
-                        <a href="#">T-shirt</a>
-                        <a href="#">COSMETIC</a>
-                        <a href="#">SOFT WEAR</a>
-                        <a href="#">ACCESSORIES</a>
-                        <a href="#">LIFE STYLE</a>
+                    <!-- ./Filter color -->
+                    <!-- Filter price -->
+                    <div class="widget widget_price_filter">
+                        <h2 class="widget-title">BY PRICES</h2>
+                        <div class="price_slider_wrapper">
+                            <div class="amount-range-price">$50 - $350</div>
+                            <div data-label-reasult="" data-min="0" data-max="500" data-unit="$" class="slider-range-price"
+                                data-value-min="50" data-value-max="350"></div>
+                                <input type="hidden" name="min" class="min" value="50" />
+                                <input type="hidden" name="max" class="max" value="350" />
+                                <button class="button" type="submit">Filter</button>
+                        </div>
                     </div>
+                    <!-- ./Filter price -->
+                    <!-- Compare products -->
+                    <div class="widget yith-woocompare-widget">
+                        <h2 class="widget-title">COMPARE PRODUCTS</h2>
+                        <div class="no-product">
+                            NO PRODUCTS HAVE COMPARE
+                        </div>
+                    </div>
+                    <!-- ./Compare products -->
+                    <!-- Product tags -->
+                    <div class="widget widget_product_tag_cloud">
+                        <h2 class="widget-title">POPULAR TAGS</h2>
+                        <div class="tagcloud">
+                            <a href="#">Cotton</a>
+                            <a href="#">Leggings</a>
+                            <a href="#">Men</a>
+                            <a href="#">Shirt</a>
+                            <a href="#">T-shirt</a>
+                            <a href="#">COSMETIC</a>
+                            <a href="#">SOFT WEAR</a>
+                            <a href="#">ACCESSORIES</a>
+                            <a href="#">LIFE STYLE</a>
+                        </div>
+                    </div>
+                    <!-- ./Product tags -->
+                    <!-- Product tags -->
+                    <div class="widget widget_custom_image">
+                        <a href="#"><img src="~/images/b/b9.jpg" alt="" /></a>
+                    </div>
+                    <!-- ./Product tags -->
                 </div>
-                <!-- ./Product tags -->
-                <!-- Product tags -->
-                <div class="widget widget_custom_image">
-                    <a href="#"><img src="~/images/b/b9.jpg" alt="" /></a>
-                </div>
-                <!-- ./Product tags -->
-            </div>
+            </form>
             <!-- ./Sidebar -->
         </div>
     </div>
