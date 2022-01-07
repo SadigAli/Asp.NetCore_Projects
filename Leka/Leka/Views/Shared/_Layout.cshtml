@@ -3,7 +3,6 @@
     Setting setting = service.GetSetting();
     List<ProductBasketVM> productBaskets = await service.GetBasketItems();
     double totalAmount = productBaskets.Sum(x=>x.Count*x.SalePrice);
-        
 }
 <!DOCTYPE html>
 <html lang="en">

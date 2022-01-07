@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Leka.Services;
 using Leka.DAL;
 using Leka.Models.Enums;
+using System.Linq.Expressions;
 
 namespace Leka.Controllers
 {
@@ -19,8 +20,9 @@ namespace Leka.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _usermanager;
         private readonly LayoutService _service;
-        
-        
+        public Dictionary<int, string> Dictionary;
+
+
         public ProductController(AppDbContext context,
                                  UserManager<AppUser> usermanager,
                                  LayoutService service)
@@ -29,43 +31,63 @@ namespace Leka.Controllers
             _usermanager = usermanager;
             _service = service;
         }
-        public IActionResult Index(int min=0,int max=350,int page = 1,Dictionary<int,string> categories=null,
-                                    Dictionary<int,string> colors = null)
+        public IActionResult Index(Dictionary<string, string> filters, int min = 0, int max = 350, int page = 1)
         {
             var query = _context.Products
                                 .Include(x => x.Category)
                                 .Include(x => x.ProductColors).ThenInclude(x => x.Color)
                                 .Include(x => x.ProductColors).ThenInclude(x => x.ProductImages)
                                 .Include(x => x.ProductTags).ThenInclude(x => x.Tag).AsEnumerable();
-            ViewBag.Count = _context.Products.Count();
-            ViewBag.Page = page;
-            ViewBag.Categories=_context.Categories.ToList();
+
+            ViewBag.Page = 1;
+            ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Colors = _context.Colors.ToList();
-            ViewBag.FilterCategories = categories;
-            ViewBag.FilterColors = colors;
-            if(min > 0)
+            ViewBag.Filters = filters;
+            if (filters.Count() > 0)
             {
-                query = query.Where(x=>x.SalePrice-x.DiscountPrice > min && x.SalePrice - x.DiscountPrice<max);
+                foreach (string key in filters.Keys)
+                {
+                    switch (key)
+                    {
+                        case "min":
+                            query = query.Where(x => x.SalePrice - x.DiscountPrice >= double.Parse(filters[key]));
+                            continue;
+                        case "max":
+                            query = query.Where(x => x.SalePrice - x.DiscountPrice <= double.Parse(filters[key]));
+                            continue;
+                        case "page":
+                            if (Int32.Parse(filters[key]) != 0)
+                            {
+                                ViewBag.Page = Int32.Parse(filters[key]);
+                            }
+                            continue;
+                        default:
+                            int filterId = Int32.Parse(key.Split('-')[1]);
+                            int identicator = Int32.Parse(key.Split('-')[0]);
+                            switch (filterId)
+                            {
+                                case 1:
+                                    query = query.Where(x => filters.ContainsKey($"{x.CategoryId}-{filterId}"));
+                                    continue;
+                                case 2:
+                                    query = query.Where(x => x.ProductColors.Any(x => filters.ContainsKey($"{x.ColorId}-2")));
+                                    continue;
+                                default:
+                                    break;
+                            }
+                            continue;
+                    }
+
+                }
             }
-            if(categories.Count!=0)
-            {
-                query = query.Where(x=>categories.ContainsKey(x.CategoryId));
-            }
-            // if(colors!=null)
-            // {
-            //     foreach (Product product in query.ToList())
-            //     {
-            //         foreach (var item in product.ProductColors)
-            //         {
-            //             query.Union(query.Where(x=>colors.ContainsKey(item.ColorId)));
-            //         }
-            //     }
-            // }
+            ViewBag.Count = query.Count();
+            ViewBag.Max = filters.ContainsKey("max") ? Int32.Parse(filters["max"]) : query.Max(x => x.SalePrice - x.DiscountPrice);
+            ViewBag.Min = filters.ContainsKey("min") ? Int32.Parse(filters["min"]) : query.Min(x => x.SalePrice - x.DiscountPrice);
             List<Product> products = query.OrderByDescending(x => x.Id)
-                                            .Skip((page - 1) * 6).Take(6).ToList();
+                                                .Skip(((int)ViewBag.Page - 1) * 6).Take(6).ToList().ToList();
             return View(products);
         }
-        
+
         public IActionResult Detail()
         {
             return View();
@@ -191,12 +213,12 @@ namespace Leka.Controllers
         }
 
         public async Task<IActionResult> Checkout()
-        {   
-            List<ProductBasketVM> products = await _service.GetBasketItems(); 
+        {
+            List<ProductBasketVM> products = await _service.GetBasketItems();
             OrderVM model = new OrderVM
             {
-                ProductBaskets = products  
-            };        
+                ProductBaskets = products
+            };
             return View(model);
         }
 
@@ -207,11 +229,11 @@ namespace Leka.Controllers
             List<ProductBasketVM> products = await _service.GetBasketItems();
             AppUser user = User.Identity.IsAuthenticated ? await _usermanager.FindByNameAsync(User.Identity.Name) : null;
             order.ProductBaskets = products;
-            if(!ModelState.IsValid) return View(order);
+            if (!ModelState.IsValid) return View(order);
             Order newOrder = new Order
             {
                 Address = order.Address,
-                AppUserId = user!=null ? user.Id : null,
+                AppUserId = user != null ? user.Id : null,
                 Email = order.Email,
                 Fullname = order.Name + " " + order.Lastname,
                 Phone = order.Phone,
@@ -220,10 +242,10 @@ namespace Leka.Controllers
                 Date = DateTime.UtcNow.AddHours(4)
             };
             newOrder.OrderItems = new List<OrderItem>();
-            double totalPrice=0;
-            foreach(ProductBasketVM product in products)
+            double totalPrice = 0;
+            foreach (ProductBasketVM product in products)
             {
-                totalPrice+=product.SalePrice*product.Count;
+                totalPrice += product.SalePrice * product.Count;
                 newOrder.OrderItems.Add(new OrderItem
                 {
                     Count = 1,
@@ -231,16 +253,17 @@ namespace Leka.Controllers
                     ProductName = product.ProductName,
                     ProductPrice = product.SalePrice,
                 });
-                newOrder.TotalPrice=totalPrice;
+                newOrder.TotalPrice = totalPrice;
             }
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
-            if(user==null)
+            if (user == null)
             {
                 HttpContext.Response.Cookies.Delete("Basket");
-            }else
+            }
+            else
             {
-                _context.ProductBaskets.RemoveRange(_context.ProductBaskets.Where(x=>x.AppUserId==user.Id));
+                _context.ProductBaskets.RemoveRange(_context.ProductBaskets.Where(x => x.AppUserId == user.Id));
                 _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));

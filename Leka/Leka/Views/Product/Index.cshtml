@@ -10,7 +10,7 @@
                 <!-- Sortbar -->
                 <div class="sortBar">
                     <div class="sortBar-left">
-                        <form class="ordering" >
+                        <form class="ordering">
                             <select>
                                 <option value="">SHORT BY</option>
                                 <option value="">Sort by popularity</option>
@@ -67,24 +67,27 @@
                     <ul>
                         @if (ViewBag.Page != 1)
                         {
-                            <li><a asp-route-page="@(ViewBag.Page-1)">Prev</a></li>
+                            <li><a asp-all-route-data="@ViewBag.Filters" asp-route-page="@(ViewBag.Page-1)">Prev</a></li>
                         }
-                        @for (int i = 1; i <= Math.Ceiling((decimal)ViewBag.Count / 6); i++)
+                        @if (ViewBag.Count > 6)
                         {
-                            if (ViewBag.Page == i)
+                            @for (int i = 1; i <= Math.Ceiling((decimal)ViewBag.Count / 6); i++)
                             {
-                                <li class="active"><a asp-route-page="@i">@i</a></li>
+                                if (ViewBag.Page == i)
+                                {
+                                    <li class="active"><a asp-all-route-data="@ViewBag.Filters" asp-route-page="@i">@i</a></li>
+
+                                }
+                                else
+                                {
+                                    <li><a asp-all-route-data="@ViewBag.Filters" asp-route-page="@i">@i</a></li>
+                                }
 
                             }
-                            else
-                            {
-                                <li><a asp-route-page="@i">@i</a></li>
-                            }
-
                         }
                         @if (ViewBag.Page != Math.Ceiling((decimal)ViewBag.Count / 6))
                         {
-                            <li><a asp-route-page="@(ViewBag.Page+1)">Next</a></li>
+                            <li><a asp-all-route-data="@ViewBag.Filters" asp-route-page="@(ViewBag.Page+1)">Next</a></li>
                         }
                     </ul>
                 </nav>
@@ -99,15 +102,16 @@
                         <ul class="product-categories">
                             @foreach (Category item in ViewBag.Categories)
                             {
-                                string name=String.Format("categories[{0}]",item.Id);
-                                if(ViewBag.FilterCategories!=null)
+                                string name = String.Format("filters[{0}-{1}]", item.Id, 1);
+                                if (ViewBag.Filters != null)
                                 {
-                                    if(ViewBag.FilterCategories.ContainsKey(item.Id))
+                                    if (ViewBag.Filters.ContainsKey($"{item.Id}-1"))
                                     {
-                                        <li><input type="checkbox" name="@name" checked value="@item.Name"/>@item.Name</li>
-                                    }else
+                                        <li><input type="checkbox" name="@name" checked value="@item.Name" />@item.Name</li>
+                                    }
+                                    else
                                     {
-                                        <li><input type="checkbox" name="@name" value="@item.Name"/>@item.Name</li>
+                                        <li><input type="checkbox" name="@name" value="@item.Name" />@item.Name</li>
                                     }
                                 }
                             }
@@ -118,21 +122,22 @@
                     <div class="widget widget_layered_nav">
                         <h2 class="widget-title">BY COLORS</h2>
                         <ul>
-                            @foreach(Color item in ViewBag.Colors)
+                            @foreach (Color item in ViewBag.Colors)
                             {
-                                string name=String.Format("colors[{0}]",item.Id);
-                                if(ViewBag.FilterColors!=null)
+                                string name = String.Format("filters[{0}-{1}]", item.Id, 2);
+                                if (ViewBag.Filters != null)
                                 {
-                                    if(ViewBag.FilterColors.ContainsKey(item.Id))
+                                    if (ViewBag.Filters.ContainsKey($"{item.Id}-2"))
                                     {
-                                        <li><input type="checkbox" name="@name" checked value="@item.Name"/>@item.Name</li>
-                                    }else
+                                        <li><input type="checkbox" name="@name" checked value="@item.Name" />@item.Name</li>
+                                    }
+                                    else
                                     {
-                                        <li><input type="checkbox" name="@name" value="@item.Name"/>@item.Name</li>
+                                        <li><input type="checkbox" name="@name" value="@item.Name" />@item.Name</li>
                                     }
                                 }
                             }
-                            
+
                         </ul>
                     </div>
                     <!-- ./Filter color -->
@@ -140,12 +145,13 @@
                     <div class="widget widget_price_filter">
                         <h2 class="widget-title">BY PRICES</h2>
                         <div class="price_slider_wrapper">
-                            <div class="amount-range-price">$50 - $350</div>
-                            <div data-label-reasult="" data-min="0" data-max="500" data-unit="$" class="slider-range-price"
-                                data-value-min="50" data-value-max="350"></div>
-                                <input type="hidden" name="min" class="min" value="50" />
-                                <input type="hidden" name="max" class="max" value="350" />
-                                <button class="button" type="submit">Filter</button>
+                            <div class="amount-range-price">$@ViewBag.Min - $@ViewBag.Max</div>
+                            <div data-label-reasult="" data-min="0" data-max="@(ViewBag.Max+50)" data-unit="$"
+                                class="slider-range-price" data-value-min="@ViewBag.Min" data-value-max="@ViewBag.Max">
+                            </div>
+                            <input type="hidden" name="filters[min]" class="min" value="@ViewBag.Min" />
+                            <input type="hidden" name="filters[max]" class="max" value="@ViewBag.Max" />
+                            <button class="button" type="submit">Filter</button>
                         </div>
                     </div>
                     <!-- ./Filter price -->
