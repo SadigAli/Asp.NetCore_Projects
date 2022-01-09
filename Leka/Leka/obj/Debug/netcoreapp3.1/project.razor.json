@@ -14547,6 +14547,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Areas\\manage\\Views\\Order\\Index.cshtml",
+      "TargetPath": "Areas\\manage\\Views\\Order\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Areas\\manage\\Views\\Product\\Index.cshtml",
       "TargetPath": "Areas\\manage\\Views\\Product\\Index.cshtml",
       "FileKind": "mvc"

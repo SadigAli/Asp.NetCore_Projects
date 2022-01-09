@@ -239,7 +239,7 @@ namespace Leka.Controllers
                 Phone = order.Phone,
                 ZipCode = order.ZipCode,
                 OrderStatus = OrderStatus.Pending,
-                Date = DateTime.UtcNow.AddHours(4)
+                Date = DateTime.UtcNow.AddHours(4),
             };
             newOrder.OrderItems = new List<OrderItem>();
             double totalPrice = 0;
@@ -248,7 +248,7 @@ namespace Leka.Controllers
                 totalPrice += product.SalePrice * product.Count;
                 newOrder.OrderItems.Add(new OrderItem
                 {
-                    Count = 1,
+                    Count = product.Count,
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
                     ProductPrice = product.SalePrice,
@@ -259,7 +259,7 @@ namespace Leka.Controllers
             _context.SaveChanges();
             if (user == null)
             {
-                HttpContext.Response.Cookies.Delete("Basket");
+                HttpContext.Response.Cookies.Delete("basket");
             }
             else
             {

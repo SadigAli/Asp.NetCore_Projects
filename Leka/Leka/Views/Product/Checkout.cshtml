@@ -34,7 +34,7 @@
                                 <div class="col-sm-6">
                                     <p>
                                         <label>FIRST NAME <span class="required">*</span></label>
-                                        <input asp-for="Name" />
+                                        <input asp-for="Name" value=@(user==null ? "" : user.Fullname.Split(" ")[0]) />
                                         <span asp-validation-for="Name"
                                             style="display:inline-block;margin:5px 0"></span>
                                     </p>
@@ -42,7 +42,7 @@
                                 <div class="col-sm-6">
                                     <p>
                                         <label>LAST NAME <span class="required">*</span></label>
-                                        <input asp-for="Lastname" />
+                                        <input asp-for="Lastname" value=@(user==null ? "" : user.Fullname.Split(" ").Length>1?user.Fullname.Split(" ")[1]:"" ) />
                                         <span asp-validation-for="Lastname"
                                             style="display:inline-block;margin:5px 0"></span>
                                     </p>
