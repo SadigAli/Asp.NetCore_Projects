@@ -14567,6 +14567,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Views\\Account\\ResetPassword.cshtml",
+      "TargetPath": "Views\\Account\\ResetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\ACER\\Desktop\\Asp.NetCore_Projects\\Leka\\Leka\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"

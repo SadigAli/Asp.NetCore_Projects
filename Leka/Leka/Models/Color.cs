@@ -16,7 +16,5 @@ namespace Leka.Models
         [Required, StringLength(10)]
         public string Code { get; set; }
         public List<ProductColor> ProductColors { get; set; }
-        [NotMapped]
-        public List<FilterSelectionVM> Selections { get; set; }
     }
 }
